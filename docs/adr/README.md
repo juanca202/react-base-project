@@ -88,6 +88,8 @@ Antes de aceptar un ADR, validar que cubra (si aplica):
 ## ADRs actuales
 
 - [ADR-001: Calidad de codigo y herramientas para Next.js](./ADR-001-code-quality-tooling.md)
+- [ADR-002: Biblioteca de componentes con Base UI](./ADR-002-component-library-base-ui.md)
+- [ADR-003: Separacion de responsabilidades — Core, Shared, Cross y Features](./ADR-003-separation-of-concerns-layers.md)
 
 ## Backlog sugerido de ADRs (Next.js)
 
