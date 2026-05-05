@@ -10,7 +10,11 @@ function isAuthenticated(request: NextRequest) {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const loggedIn = isAuthenticated(request);
-  const requiresAuth = pathname === '/' || pathname.startsWith('/transfers');
+  const requiresAuth =
+    pathname === '/' ||
+    pathname.startsWith('/transfers') ||
+    pathname === '/settings' ||
+    pathname.startsWith('/settings/');
 
   if (!loggedIn && requiresAuth) {
     return NextResponse.redirect(new URL('/login', request.url));
@@ -24,5 +28,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/transfers/:path*', '/login']
+  matcher: ['/', '/transfers/:path*', '/login', '/settings', '/settings/:path*']
 };
