@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-const SESSION_COOKIE_NAME = 'mock_session';
+import { DEMO_ACCESS_TOKEN_COOKIE, parseUsernameFromDemoJwt } from '@/lib/demo-auth';
 
 function isAuthenticated(request: NextRequest) {
-  return Boolean(request.cookies.get(SESSION_COOKIE_NAME)?.value);
+  const token = request.cookies.get(DEMO_ACCESS_TOKEN_COOKIE)?.value;
+  return Boolean(parseUsernameFromDemoJwt(token));
 }
 
 export function proxy(request: NextRequest) {
@@ -27,6 +27,6 @@ export function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = {
+export const proxyConfig = {
   matcher: ['/', '/transfers/:path*', '/login', '/settings', '/settings/:path*']
 };

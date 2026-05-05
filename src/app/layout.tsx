@@ -4,6 +4,7 @@ import { Button } from '@base-ui/react/button';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { DEMO_ACCESS_TOKEN_COOKIE, parseUsernameFromDemoJwt } from '@/lib/demo-auth';
 import './globals.css';
 
 const geistSans = Geist({
@@ -27,7 +28,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const username = cookieStore.get('mock_session')?.value?.trim() ?? '';
+  const token = cookieStore.get(DEMO_ACCESS_TOKEN_COOKIE)?.value;
+  const username = parseUsernameFromDemoJwt(token) ?? '';
   const isAuthenticated = Boolean(username);
   const userInitials = username
     .split(/\s+/)
