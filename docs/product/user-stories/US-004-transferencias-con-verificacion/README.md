@@ -26,7 +26,7 @@
 
 ## Referencias
 
-- **Glosario:** [Transferencia (entre cuentas propias)](../../glossary.md)
+- **Glosario:** [Transferencia](../../glossary.md#transferencia)
 - **Diseño / prototipo (URL):**
   - Etapa 1 - Selector de tipo de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2814&m=dev)
   - Etapa 2 - Formulario de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2865&m=dev)
