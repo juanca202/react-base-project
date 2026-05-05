@@ -2,85 +2,93 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #333333;
 
   /* Color tokens - default/background */
   --color-bg-default: #ffffff;
-  --color-bg-secondary: #f3f4f6;
-  --color-bg-tertiary: #d1d5db;
-  --color-bg-default-hover: #f3f4f6;
-  --color-bg-brand: #1e40af;
-  --color-bg-brand-secondary: #bfdbfe;
-  --color-bg-brand-hover: #1e3a8a;
-  --color-bg-positive: #22c55e;
-  --color-bg-positive-secondary: #bbf7d0;
-  --color-bg-positive-hover: #16a34a;
-  --color-bg-warning: #facc15;
-  --color-bg-warning-secondary: #fef08a;
-  --color-bg-warning-hover: #eab308;
-  --color-bg-danger: #ef4444;
-  --color-bg-danger-secondary: #fecaca;
-  --color-bg-danger-hover: #dc2626;
-  --color-bg-disabled: #d1d5db;
+  --color-bg-secondary: #ebf5f6;
+  --color-bg-tertiary: #f0f8f9;
+  --color-bg-default-hover: #f0f8f9;
+  --color-bg-brand: #008392;
+  --color-bg-brand-secondary: #aacccc;
+  --color-bg-brand-hover: #006b77;
+  --color-bg-positive: #2e7d32;
+  --color-bg-positive-secondary: #c8e6c9;
+  --color-bg-positive-hover: #1b5e20;
+  --color-bg-warning: #e65100;
+  --color-bg-warning-secondary: #ffe0b2;
+  --color-bg-warning-hover: #bf360c;
+  --color-bg-danger: #c62828;
+  --color-bg-danger-secondary: #ffcdd2;
+  --color-bg-danger-hover: #b71c1c;
+  --color-bg-disabled: #aacccc;
 
   /* Color tokens - text */
-  --color-text-default: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-tertiary: #9ca3af;
-  --color-text-brand: #1e40af;
-  --color-text-brand-secondary: #2563eb;
-  --color-text-brand-tertiary: #3b82f6;
-  --color-text-on-brand: #dbeafe;
-  --color-text-on-brand-secondary: #1e3a8a;
-  --color-text-positive: #166534;
-  --color-text-positive-secondary: #16a34a;
-  --color-text-positive-tertiary: #22c55e;
-  --color-text-warning: #713f12;
-  --color-text-warning-secondary: #a16207;
-  --color-text-warning-tertiary: #ca8a04;
-  --color-text-warning-on: #111827;
-  --color-text-warning-on-secondary: #854d0e;
-  --color-text-danger: #b91c1c;
-  --color-text-danger-secondary: #dc2626;
-  --color-text-danger-tertiary: #ef4444;
-  --color-text-danger-on: #fee2e2;
+  --color-text-default: #333333;
+  --color-text-secondary: #606060;
+  --color-text-tertiary: #9f9f9f;
+  --color-text-brand: #008392;
+  --color-text-brand-secondary: #006b77;
+  --color-text-brand-tertiary: #1b5255;
+  --color-text-on-brand: #ffffff;
+  --color-text-on-brand-secondary: #ebf5f6;
+  --color-text-positive: #2e7d32;
+  --color-text-positive-secondary: #1b5e20;
+  --color-text-positive-tertiary: #388e3c;
+  --color-text-warning: #e65100;
+  --color-text-warning-secondary: #bf360c;
+  --color-text-warning-tertiary: #f57c00;
+  --color-text-warning-on: #ffffff;
+  --color-text-warning-on-secondary: #fff3e0;
+  --color-text-danger: #c62828;
+  --color-text-danger-secondary: #b71c1c;
+  --color-text-danger-tertiary: #d32f2f;
+  --color-text-danger-on: #ffffff;
 
   /* Spacing tokens */
   --space-0: 0rem;
-  --space-050: 0.125rem;
-  --space-100: 0.25rem;
-  --space-150: 0.375rem;
-  --space-200: 0.5rem;
-  --space-300: 0.75rem;
-  --space-400: 1rem;
-  --space-600: 1.5rem;
-  --space-800: 2rem;
+  --space-050: 0.25rem;
+  --space-100: 0.5rem;
+  --space-150: 0.75rem;
+  --space-200: 1rem;
+  --space-300: 1.25rem;
+  --space-400: 1.5rem;
+  --space-600: 2rem;
+  --space-800: 2.5rem;
   --space-1200: 3rem;
-  --space-1600: 4rem;
-  --space-2400: 6rem;
-  --space-4000: 10rem;
+  --space-1600: 3.25rem;
+  --space-2400: 4rem;
+  --space-4000: 7.125rem;
 
   /* Radius tokens */
-  --radius-100: 0.25rem;
+  --radius-100: 0.5rem;
   --radius-200: 0.5rem;
   --radius-400: 1rem;
-  --radius-full: 9999px;
+  --radius-full: 2.25rem;
+  --radius-card: 1.25rem;
+  --radius-modal: 1rem;
+  --radius-none: 0;
 
   /* Elevation tokens */
-  --shadow-100: 0 1px 4px rgba(12, 12, 13, 0.05);
-  --shadow-200: 0 1px 4px rgba(12, 12, 13, 0.05), 0 1px 4px rgba(12, 12, 13, 0.1);
-  --shadow-300: 0 4px 4px rgba(12, 12, 13, 0.05), 0 4px 4px rgba(12, 12, 13, 0.1);
-  --shadow-400: 0 4px 4px rgba(12, 12, 13, 0.05), 0 16px 32px rgba(12, 12, 13, 0.1);
+  --shadow-100: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-200: 0 6px 4px 2px rgba(73, 74, 82, 0.15);
+  --shadow-300: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-400: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --shadow-brand-hover: 0 4px 12px rgba(0, 131, 146, 0.3);
 
   /* Typography tokens */
-  --text-title-page-size: 3rem;
-  --text-title-page-line: 1.2;
+  --text-title-page-size: 1.5rem;
+  --text-title-page-line: 2rem;
   --text-heading-size: 1.5rem;
-  --text-heading-line: 1.2;
-  --text-body-base-size: 1rem;
-  --text-body-base-line: 1.4;
+  --text-heading-line: 2rem;
+  --text-body-base-size: 0.875rem;
+  --text-body-base-line: 1.25rem;
   --text-body-small-size: 0.875rem;
-  --text-body-small-line: 1.4;
+  --text-body-small-line: 1.25rem;
+  --text-button-size: 1rem;
+  --text-button-line: 1.5rem;
+  --text-caption-size: 0.75rem;
+  --text-caption-line: 1.125rem;
 }
 
 @theme inline {
@@ -139,29 +147,40 @@
   --radius-200: var(--radius-200);
   --radius-400: var(--radius-400);
   --radius-full: var(--radius-full);
+  --radius-card: var(--radius-card);
+  --radius-modal: var(--radius-modal);
+  --radius-none: var(--radius-none);
   --shadow-100: var(--shadow-100);
   --shadow-200: var(--shadow-200);
   --shadow-300: var(--shadow-300);
   --shadow-400: var(--shadow-400);
-  --font-sans: var(--font-geist-sans);
+  --shadow-brand-hover: var(--shadow-brand-hover);
+  --font-sans: 'Lexend', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --color-bg-default: #0a0a0a;
-    --color-bg-secondary: #111827;
-    --color-bg-tertiary: #1f2937;
-    --color-text-default: #ededed;
-    --color-text-secondary: #d1d5db;
-    --color-text-tertiary: #9ca3af;
+    --background: #17191f;
+    --foreground: #ffffff;
+    --color-bg-default: #17191f;
+    --color-bg-secondary: #1b5255;
+    --color-bg-tertiary: #495057;
+    --color-text-default: #ffffff;
+    --color-text-secondary: #ced4da;
+    --color-text-tertiary: #aacccc;
+    --color-text-on-brand: #ffffff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family:
+    'Lexend',
+    'Roboto',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
 }
