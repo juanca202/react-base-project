@@ -28,7 +28,7 @@ export default async function TransfersPage({ searchParams }: TransfersPageProps
   const label = getPlaceholderLabel(feature);
 
   return (
-    <main className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-8 sm:px-6">
+    <main className="flex min-h-full w-full flex-col gap-4 px-4 py-8 sm:px-6">
       <h1 className="text-2xl font-semibold text-text-default">{label}</h1>
       <p className="rounded-xl bg-bg-secondary p-4 text-sm text-text-secondary">
         Esta sección está en construcción para la demo.

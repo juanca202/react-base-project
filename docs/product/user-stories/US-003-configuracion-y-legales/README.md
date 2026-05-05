@@ -21,6 +21,7 @@
 - **RN-04** — La lista de opciones **DEBE** presentarse como navegación reconocible (p. ej. lista o grupo de enlaces con estados hover/focus acordes a accesibilidad básica).
 - **RN-05** — Los datos de perfil y la información de cuenta mostrados en la pantalla de configuración **DEBEN** corresponder al usuario autenticado en la sesión actual; la pantalla **NO DEBE** exponer datos de otra persona.
 - **RN-06** — El acceso a la pantalla de configuración **DEBE** estar protegido por sesión: un visitante sin sesión válida **NO DEBE** obtener el contenido de esa pantalla y **DEBE** ser redirigido al inicio de sesión, de forma coherente con **US-001**.
+- **RN-07** — El acceso principal a la pantalla de configuración **DEBE** iniciar desde el ícono de perfil de usuario mostrado en la pantalla inicial implementada en **US-002**.
 
 ## Referencias
 
@@ -36,6 +37,10 @@ ENTONCES el sistema lo redirige a la pantalla de inicio de sesión
 DADO un usuario autenticado
 CUANDO accede a la pantalla de configuración
 ENTONCES ve enlaces a privacidad y términos y un vínculo para volver al inicio
+
+DADO un usuario autenticado en la pantalla inicial del producto
+CUANDO selecciona el ícono de perfil de usuario
+ENTONCES el sistema lo dirige a la pantalla de configuración
 
 DADO un usuario autenticado con sesión válida
 CUANDO la pantalla de configuración muestra la información de perfil o cuenta

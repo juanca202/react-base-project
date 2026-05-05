@@ -136,15 +136,16 @@ export default async function HomePage() {
   const [{ accounts, activity }, username] = await Promise.all([getLandingData(), getUsername()]);
 
   return (
-    <div className="relative mx-auto min-h-full w-full max-w-[360px] bg-[#f2f3f7] px-6 pb-28">
+    <div className="relative min-h-full w-full bg-[#f2f3f7] px-6 pb-28">
       <main id="main-content">
         {/* Header + gradiente + pestañas + carrusel (orden Figma 1:1971) */}
         <div className="rounded-b-3xl bg-gradient-to-b from-[#0b515c] from-0% via-[#008292] via-50% to-[#f2f3f7] to-100% px-6 pb-4 pt-11 text-white">
           <div className="flex items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-3">
-              <span
+              <Link
+                href="/settings"
                 className="grid size-[32px] shrink-0 place-items-center rounded-[16px] bg-[#94e0ed] text-[#0b515c]"
-                aria-hidden
+                aria-label="Ir a configuración de perfil"
               >
                 <svg className="size-4" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path
@@ -154,7 +155,7 @@ export default async function HomePage() {
                     strokeLinecap="round"
                   />
                 </svg>
-              </span>
+              </Link>
               <p className="truncate text-base leading-6 text-white">
                 <span className="font-normal">Hola</span>
                 <span className="text-xs leading-5">, </span>
@@ -396,7 +397,7 @@ export default async function HomePage() {
         </Link>
 
         <Link
-          href="/transfers?feature=other"
+          href="/settings"
           className="flex h-[68px] w-[60px] flex-col items-center justify-center gap-0.5"
         >
           <svg className="size-[24px] text-[#757575]" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -405,7 +406,7 @@ export default async function HomePage() {
               fill="currentColor"
             />
           </svg>
-          <span className="text-[10px] font-normal leading-[20px] text-[#757575]">Otros</span>
+          <span className="text-[10px] font-normal leading-[20px] text-[#757575]">Ajustes</span>
         </Link>
       </nav>
     </div>

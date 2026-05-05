@@ -24,7 +24,7 @@ Implementar y mantener la pantalla de configuración en la ruta **`/settings`** 
 
 ## Plan de implementación
 
-1. Mantener la UI de configuración en **`/settings`** y enlaces de navegación del producto que apunten a esa ruta (p. ej. encabezado, retorno desde legales).
+1. Mantener la UI de configuración en **`/settings`** y asegurar como acceso principal el ícono de perfil de usuario en la pantalla inicial de **US-002**, además de cualquier enlace secundario (p. ej. retorno desde legales).
 2. Incluir **`/settings`** (y subrutas si existen) en el conjunto de rutas **protegidas** del proxy: visitante sin cookie de sesión (o criterio equivalente acordado con **US-001**) → redirección a **`/login`**.
 3. Implementar la consulta a `GET /api/settings` y la presentación de datos de perfil (`username`, `firstName`, `lastName`, `email`) conforme a [`api-settings.md`](../../technical-docs/api-settings.md), aplicando el mecanismo de sesión/token de [`api-token-login.md`](../../technical-docs/api-token-login.md) cuando corresponda.
 4. Garantizar que el cierre de sesión desde esta pantalla cumpla **US-001** y **RN-03** (invalidar sesión, destino único al login).
