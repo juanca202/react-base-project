@@ -16,6 +16,6 @@ Estado de sesión representado por la cookie `mock_session` en la demo; **NO** c
 
 ---
 
-## Transferencia (entre cuentas propias)
+## Transferencia
 
 Operación de envío de fondos entre cuentas del titular mostradas en la demo. La preparación y confirmación usan servicios mock en el cliente; los saldos y cuentas son datos de demostración.
