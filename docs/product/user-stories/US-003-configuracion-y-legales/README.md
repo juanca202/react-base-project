@@ -1,7 +1,7 @@
 # US-003: Configuración y enlaces legales
 
 - **ID:** US-003
-- **Estado:** Draft
+- **Estado:** Ready
 
 ## Descripción
 
@@ -9,7 +9,9 @@
 **Quiero** un punto central desde el que consultar términos y privacidad y gestionar lo referente a mi usuario (incluida la salida de la aplicación cuando corresponda)  
 **Para** cumplir la transparencia legal y tener control claro sobre mi sesión y preferencias asociadas a mi cuenta
 
-El objetivo del alcance es **implementar** las pantallas y flujos según diseño y reglas de negocio: **no** se asume que las vistas o rutas ya existan en el producto; las crea el trabajo derivado de esta historia.
+## Supuestos
+
+- Esta historia asume que **US-001 (pantalla de autenticación y manejo de sesión/logout)** ya fue ejecutada y se encuentra disponible como base funcional.
 
 ## Reglas de negocio
 
@@ -65,22 +67,22 @@ ENTONCES deja de estar autenticado y es redirigido a la pantalla de inicio de se
 
 ### INVEST
 
-| Letra | Criterio      | Resultado | Notas                                                                                                                                |
-| ----- | ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **I** | Independiente | Parcial   | La semántica de sesión y logout **DEBE** alinearse con **US-001**. Las pantallas y rutas se entregan en el alcance de esta historia. |
-| **N** | Negociable    | Cumple    | Orden de ítems y etiquetas negociables.                                                                                              |
-| **V** | Valiosa       | Cumple    | Cumplimiento normativo y UX de salida y gestión de usuario.                                                                          |
-| **E** | Estimable     | Cumple    | Flujos y reglas funcionales acotados; detalle de integración en tareas de implementación.                                            |
-| **S** | Pequeña       | Cumple    | Conjunto coherente de pantallas de configuración y enlaces legales.                                                                  |
-| **T** | Testeable     | Cumple    | Navegación y resultado de logout verificables.                                                                                       |
+| Letra | Criterio      | Resultado | Notas                                                                                                        |
+| ----- | ------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
+| **I** | Independiente | Cumple    | Se asume **US-001** ya ejecutada; esta historia consume ese comportamiento de sesión/logout sin redefinirlo. |
+| **N** | Negociable    | Cumple    | Orden de ítems y etiquetas negociables.                                                                      |
+| **V** | Valiosa       | Cumple    | Cumplimiento normativo y UX de salida y gestión de usuario.                                                  |
+| **E** | Estimable     | Cumple    | Flujos y reglas funcionales acotados; detalle de integración en tareas de implementación.                    |
+| **S** | Pequeña       | Cumple    | Conjunto coherente de pantallas de configuración y enlaces legales.                                          |
+| **T** | Testeable     | Cumple    | Navegación y resultado de logout verificables.                                                               |
 
 ### Definition of Ready (DoR)
 
-| Criterio DoR                       | Estado  | Notas                                                                                                                                           |
-| ---------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dependencias listas                | Parcial | **US-001** para cierre de sesión y destino de login; el resto del alcance es implementación propia de esta historia.                            |
-| Inputs/outputs claros              | Cumple  | Destinos de contenido legal, configuración y resultado de cierre de sesión.                                                                     |
-| Unidades de trabajo definidas      | Cumple  | Listadas arriba.                                                                                                                                |
-| Sin decisiones técnicas pendientes | Parcial | **RN-06** (acceso protegido por sesión); **RN-03** / **US-001** (logout); contratos HTTP y ruta URL concreta en **TK-001** y `technical-docs/`. |
-| Referencias de UI                  | Cumple  | Figma enlazado en **Referencias**.                                                                                                              |
-| Sin aclaraciones pendientes        | Cumple  | Ninguna.                                                                                                                                        |
+| Criterio DoR                       | Estado | Notas                                                                                                                                              |
+| ---------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dependencias listas                | Cumple | Se asume **US-001** ejecutada para cierre de sesión y destino de login; el resto del alcance es implementación propia de esta historia.            |
+| Inputs/outputs claros              | Cumple | Destinos de contenido legal, configuración y resultado de cierre de sesión.                                                                        |
+| Unidades de trabajo definidas      | Cumple | Listadas arriba.                                                                                                                                   |
+| Sin decisiones técnicas pendientes | Cumple | Definiciones funcionales cerradas en la historia; el detalle de contratos HTTP y ruta URL concreta se documenta en **TK-001** y `technical-docs/`. |
+| Referencias de UI                  | Cumple | Figma enlazado en **Referencias**.                                                                                                                 |
+| Sin aclaraciones pendientes        | Cumple | Ninguna.                                                                                                                                           |
