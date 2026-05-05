@@ -22,7 +22,7 @@ function IconBank() {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden
-      className="text-[#008292]"
+      className="text-(--color-text-brand)"
     >
       <path
         fill="currentColor"
@@ -85,7 +85,7 @@ export default function LoginPage() {
 
         <button
           type="button"
-          className="mt-6 text-center text-sm font-semibold leading-[22px] text-[#008292] hover:opacity-90"
+          className="mt-6 text-center text-sm font-semibold leading-[22px] text-(--color-text-brand) hover:opacity-90"
         >
           Crear usuario
         </button>
@@ -107,7 +107,7 @@ export default function LoginPage() {
 
         <button
           type="button"
-          className="mx-auto mt-6 text-center text-xs font-bold leading-4 text-[#008292] underline decoration-solid underline-offset-2 [text-decoration-skip-ink:none] hover:opacity-90"
+          className="mx-auto mt-6 text-center text-xs font-bold leading-4 text-(--color-text-brand) underline decoration-solid underline-offset-2 [text-decoration-skip-ink:none] hover:opacity-90"
         >
           ¿Necesitas ayuda?
         </button>

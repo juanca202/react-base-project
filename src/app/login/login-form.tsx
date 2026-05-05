@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const fieldClass =
-  'h-[52px] w-full rounded-lg border-0 bg-white px-4 text-sm text-[#1a1a1a] shadow-[0_1px_3px_rgba(0,0,0,0.06)] outline-none placeholder:text-[#757575] focus:ring-2 focus:ring-[#008292]/25';
+  'h-[52px] w-full rounded-lg border-0 bg-white px-4 text-sm text-[#1a1a1a] shadow-[0_1px_3px_rgba(0,0,0,0.06)] outline-none placeholder:text-[#757575] focus:ring-2 focus:ring-(--color-bg-brand)/25';
 
 function IconEye({ visible }: { visible: boolean }) {
   if (visible) {
@@ -172,7 +172,7 @@ export function LoginForm() {
       <Button
         type="submit"
         disabled={status === 'submitting'}
-        className="flex h-[54px] w-full items-center justify-center gap-3 rounded-lg bg-[#008292] px-4 text-sm font-semibold leading-[22px] text-white shadow-sm transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-[54px] w-full items-center justify-center gap-3 rounded-lg bg-(--color-bg-brand) px-4 text-sm font-semibold leading-[22px] text-white shadow-sm transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <span>{status === 'submitting' ? 'Entrando...' : 'Iniciar sesión'}</span>
         {status === 'idle' ? <IconLoginArrow /> : null}

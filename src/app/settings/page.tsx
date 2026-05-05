@@ -70,7 +70,7 @@ function IconGlyph({
 }: {
   name: 'bell' | 'bank' | 'shield' | 'star' | 'privacy' | 'terms' | 'phone';
 }) {
-  const common = 'size-4 text-[#008292]';
+  const common = 'size-4 text-(--color-text-brand)';
   if (name === 'bell') {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -209,14 +209,14 @@ export default async function SettingsPage() {
               <p className="text-base font-semibold leading-6 text-[#1a1a1a]">
                 {user.firstName} {user.lastName}
               </p>
-              <p className="text-[10px] font-normal leading-5 text-[#008292]">
+              <p className="text-[10px] font-normal leading-5 text-(--color-text-brand)">
                 Última conexión 10 de abril / 09:40
               </p>
             </div>
           </div>
           <button
             type="button"
-            className="absolute right-4 top-4 grid size-6 place-items-center rounded bg-[#d0f0f6] text-[#008292]"
+            className="absolute right-4 top-4 grid size-6 place-items-center rounded bg-[#d0f0f6] text-(--color-text-brand)"
             aria-label="Editar perfil"
           >
             <svg className="size-4" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -250,10 +250,15 @@ export default async function SettingsPage() {
         <form action="/api/mock-logout" method="post" className="pt-1">
           <button
             type="submit"
-            className="mx-auto flex h-12 w-full max-w-[312px] items-center justify-center gap-3 rounded-[8px] bg-transparent px-4 py-4 text-sm font-semibold leading-[22px] text-[#008292] shadow-[0_4px_4px_4px_#e2e2e2] hover:opacity-95"
+            className="mx-auto flex h-12 w-full max-w-[312px] items-center justify-center gap-3 rounded-[8px] bg-transparent px-4 py-4 text-sm font-semibold leading-[22px] text-(--color-text-brand) shadow-[0_4px_4px_4px_#e2e2e2] hover:opacity-95"
           >
             <span>Cerrar sesión</span>
-            <svg className="size-5 text-[#008292]" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <svg
+              className="size-5 text-(--color-text-brand)"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden
+            >
               <path
                 d="M10 7 5 12l5 5M6 12h9M14 5h4v14h-4"
                 stroke="currentColor"

@@ -81,7 +81,7 @@ const FREQUENT_PAYMENTS = [
 ] as const;
 
 function FrequentIcon({ name }: { name: (typeof FREQUENT_PAYMENTS)[number]['icon'] }) {
-  const cls = 'size-[25px] text-[#008292]';
+  const cls = 'size-[25px] text-(--color-text-brand)';
   switch (name) {
     case 'droplet':
       return (
@@ -187,7 +187,7 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-4 flex gap-[10px] overflow-x-auto pb-[3px] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <span className="flex h-6 shrink-0 items-center justify-center rounded-[12px] border border-[#d0f0f6] bg-[#f2f3f7] px-[12px] text-center text-[12px] font-semibold leading-[20px] text-[#008292]">
+            <span className="flex h-6 shrink-0 items-center justify-center rounded-[12px] border border-[#d0f0f6] bg-[#f2f3f7] px-[12px] text-center text-[12px] font-semibold leading-[20px] text-(--color-text-brand)">
               Todos
             </span>
             {(['Cuentas', 'Tarjetas', 'Inversiones', 'Préstamos'] as const).map((label) => (
@@ -307,7 +307,7 @@ export default async function HomePage() {
                     >
                       <div className="flex min-w-0 flex-1 items-center gap-[16px]">
                         <div className="flex shrink-0 flex-col items-center justify-center leading-[0] text-center whitespace-nowrap">
-                          <span className="mb-[-4px] text-[16px] font-semibold leading-[24px] text-[#008292]">
+                          <span className="mb-[-4px] text-[16px] font-semibold leading-[24px] text-(--color-text-brand)">
                             {day}
                           </span>
                           <span className="text-[12px] font-normal leading-[20px] text-[#757575]">
@@ -339,7 +339,12 @@ export default async function HomePage() {
           href="/"
           className="relative flex h-[68px] w-[60px] flex-col items-center justify-center gap-0.5 rounded-[24px] bg-[#e5ebee]"
         >
-          <svg className="size-[24px] text-[#008292]" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <svg
+            className="size-[24px] text-(--color-text-brand)"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden
+          >
             <path
               d="M4 10.5L12 4l8 6.5V20a1 1 0 01-1 1h-5v-6H10v6H5a1 1 0 01-1-1v-9.5z"
               stroke="currentColor"
@@ -347,7 +352,9 @@ export default async function HomePage() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-[10px] font-semibold leading-[20px] text-[#008292]">Inicio</span>
+          <span className="text-[10px] font-semibold leading-[20px] text-(--color-text-brand)">
+            Inicio
+          </span>
         </Link>
 
         <Link

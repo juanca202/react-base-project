@@ -11,3 +11,5 @@
 - **Regla de referencias (historias US):** los `README.md` de historias (`US-XXX`) **no deben** incluir referencias a tareas (`TK-XXX`) ni a documentos técnicos (`docs/product/technical-docs/`).
 
 - preferred language: es
+
+- **Tema visual (Tailwind/theme):** preferir siempre variables del theme (`src/theme/index.css`) y tokens de TailwindCSS en lugar de colores fijos (hex/rgb/hsl hardcoded) al implementar o refactorizar UI.

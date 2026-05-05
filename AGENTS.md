@@ -4,12 +4,12 @@
 
 ## 1) Orden de referencia (obligatorio)
 
-1. Revisar `docs/adr/README.md` y, según el tema:
-   - `docs/adr/ADR-001-code-quality-tooling.md`
-   - `docs/adr/ADR-002-component-library-base-ui.md`
-   - `docs/adr/ADR-003-separation-of-concerns-layers.md`
-2. Si falta una definición o preferencia del repo, revisar `.agents/MEMORY.md`.
-3. Si aún hay ambiguedad, preguntar al usuario o actualizar `.agents/MEMORY.md` cuando corresponda.
+1. Revisar primero `.agents/MEMORY.md`.
+2. Revisar los ADR segun el tema:
+   - [ADR-001: Calidad de codigo y herramientas para Next.js](docs/adr/ADR-001-code-quality-tooling.md)
+   - [ADR-002: Biblioteca de componentes con Base UI](docs/adr/ADR-002-component-library-base-ui.md)
+   - [ADR-003: Separacion de responsabilidades — Core, Shared, Cross y Features](docs/adr/ADR-003-separation-of-concerns-layers.md)
+3. Si hay ambiguedades, preguntar al usuario y actualizar `.agents/MEMORY.md`.
 
 ## 2) Regla clave de Next.js
 
