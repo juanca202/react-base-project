@@ -1,5 +1,3 @@
-<!-- BEGIN:nextjs-agent-rules -->
-
 # Contexto inicial para agentes
 
 ## 1) Reglas y decisiones del proyecto (orden de consulta obligatorio)
@@ -20,12 +18,10 @@ Esta versión introduce cambios incompatibles: las APIs, las convenciones y la e
 
 ## 3) Uso obligatorio de agentes especializados
 
-- Implementación HTML/UI: usar `.agents/agents/ui-specialist.md`.
-- Testing: usar `.agents/agents/quality-specialist.md`.
-- Documentación: usar `.agents/agents/docs-specialist.md`.
+- Implementación HTML/UI: usar `/ui-specialist.md`.
+- Testing: usar `/quality-specialist.md`.
+- Documentación: usar `/docs-specialist.md`.
 
 ## 4) Implementación desde diseños en Figma (obligatorio)
 
 - Para implementar desde diseños con referencia Figma, es obligatorio usar el skill `/figma-implement-design`.
-
-<!-- END:nextjs-agent-rules -->
