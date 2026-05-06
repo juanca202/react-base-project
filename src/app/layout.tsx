@@ -1,4 +1,13 @@
 import type { Metadata } from 'next';
+import { Lexend } from 'next/font/google';
+
+import '../theme/index.css';
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lexend'
+});
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -11,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="es" className={lexend.variable}>
+      <body className={`${lexend.className} antialiased`}>{children}</body>
     </html>
   );
 }
