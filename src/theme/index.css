@@ -1,17 +1,36 @@
 @import 'tailwindcss';
 
+/*
+ * Design tokens alineados con DESIGN.md (Banco Bolivariano).
+ * Colores en minúsculas hex para consistencia con el doc.
+ */
+
 :root {
   --background: #ffffff;
   --foreground: #333333;
 
-  /* Color tokens - default/background */
+  /* Surfaces & layout */
   --color-bg-default: #ffffff;
   --color-bg-secondary: #ebf5f6;
   --color-bg-tertiary: #f0f8f9;
   --color-bg-default-hover: #f0f8f9;
+  --color-bg-service-tint: rgb(235 245 246 / 0.5);
+  --color-bg-input-disabled: #f5f5f5;
+  --color-bg-input-error: #ffebee;
+  --color-overlay-backdrop: rgb(0 0 0 / 0.4);
+
+  /* Brand & interactive */
   --color-bg-brand: #008392;
   --color-bg-brand-secondary: #aacccc;
   --color-bg-brand-hover: #006b77;
+  --color-bg-brand-active: #005a63;
+  --color-bg-disabled: #aacccc;
+  --color-secondary-button-active: #e0f1f3;
+  --color-border-default: #ced4da;
+  --color-border-focus: #008392;
+  --color-deep-teal: #1b5255;
+
+  /* Status (badges / feedback) */
   --color-bg-positive: #2e7d32;
   --color-bg-positive-secondary: #c8e6c9;
   --color-bg-positive-hover: #1b5e20;
@@ -21,12 +40,25 @@
   --color-bg-danger: #c62828;
   --color-bg-danger-secondary: #ffcdd2;
   --color-bg-danger-hover: #b71c1c;
-  --color-bg-disabled: #aacccc;
 
-  /* Color tokens - text */
+  /* Neutrals (DESIGN §2) */
+  --color-neutral-charcoal: #333333;
+  --color-neutral-medium: #606060;
+  --color-neutral-light: #9f9f9f;
+  --color-neutral-label: #424242;
+  --color-neutral-slate: #495057;
+  --color-neutral-very-dark: #212529;
+  --color-neutral-stone: #6c757d;
+  --color-neutral-heading: #17191f;
+  --color-pure-black: #000000;
+
+  /* Text */
   --color-text-default: #333333;
   --color-text-secondary: #606060;
   --color-text-tertiary: #9f9f9f;
+  --color-text-label: #424242;
+  --color-text-slate: #495057;
+  --color-text-heading-emphasis: #17191f;
   --color-text-brand: #008392;
   --color-text-brand-secondary: #006b77;
   --color-text-brand-tertiary: #1b5255;
@@ -44,63 +76,110 @@
   --color-text-danger-secondary: #b71c1c;
   --color-text-danger-tertiary: #d32f2f;
   --color-text-danger-on: #ffffff;
+  --color-text-input-error: #d32f2f;
 
-  /* Spacing tokens */
+  /* Spacing: escala base 4px (DESIGN §5) */
   --space-0: 0rem;
-  --space-050: 0.25rem;
-  --space-100: 0.5rem;
-  --space-150: 0.75rem;
-  --space-200: 1rem;
-  --space-300: 1.25rem;
-  --space-400: 1.5rem;
-  --space-600: 2rem;
-  --space-800: 2.5rem;
-  --space-1200: 3rem;
-  --space-1600: 3.25rem;
-  --space-2400: 4rem;
-  --space-4000: 7.125rem;
+  --space-050: 0.25rem; /* 4px */
+  --space-100: 0.5rem; /* 8px */
+  --space-150: 0.75rem; /* 12px */
+  --space-200: 1rem; /* 16px */
+  --space-300: 1.25rem; /* 20px */
+  --space-400: 1.5rem; /* 24px */
+  --space-500: 1.75rem; /* 28px */
+  --space-600: 2rem; /* 32px */
+  --space-700: 2.25rem; /* 36px */
+  --space-800: 2.5rem; /* 40px */
+  --space-1200: 3rem; /* 48px */
+  --space-1300: 3.25rem; /* 52px */
+  --space-2400: 4rem; /* 64px — uso raro; preferir 52px para secciones */
 
-  /* Radius tokens */
-  --radius-100: 0.5rem;
-  --radius-200: 0.5rem;
-  --radius-400: 1rem;
-  --radius-full: 2.25rem;
-  --radius-card: 1.25rem;
-  --radius-modal: 1rem;
+  /* Radii (DESIGN §5) */
   --radius-none: 0;
+  --radius-100: 0.5rem; /* 8px inputs, compactos */
+  --radius-200: 0.75rem; /* 12px badges, contenedores suaves */
+  --radius-400: 1rem; /* 16px modales */
+  --radius-card: 1.25rem; /* 20px service cards */
+  --radius-full: 2.25rem; /* 36px pill buttons */
+  --radius-modal: 1rem;
 
-  /* Elevation tokens */
-  --shadow-100: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-200: 0 6px 4px 2px rgba(73, 74, 82, 0.15);
-  --shadow-300: 0 8px 16px rgba(0, 0, 0, 0.2);
-  --shadow-400: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --shadow-brand-hover: 0 4px 12px rgba(0, 131, 146, 0.3);
+  /* Elevation (DESIGN §6) */
+  --shadow-100: 0 4px 8px rgb(0 0 0 / 0.1);
+  --shadow-200: 0 6px 4px 2px rgb(73 74 82 / 0.15);
+  --shadow-300: 0 8px 16px rgb(0 0 0 / 0.2);
+  --shadow-400: 0 8px 32px rgb(0 0 0 / 0.15);
+  --shadow-brand-hover: 0 4px 12px rgb(0 131 146 / 0.3);
+  --shadow-inset-active: inset 0 2px 4px rgb(0 0 0 / 0.2);
+  --shadow-focus-input: 0 0 0 3px rgb(0 131 146 / 0.1);
+  --shadow-focus-control: 0 0 0 3px rgb(0 131 146 / 0.2);
 
-  /* Typography tokens */
-  --text-title-page-size: 1.5rem;
-  --text-title-page-line: 2rem;
-  --text-heading-size: 1.5rem;
-  --text-heading-line: 2rem;
-  --text-body-base-size: 0.875rem;
-  --text-body-base-line: 1.25rem;
-  --text-body-small-size: 0.875rem;
-  --text-body-small-line: 1.25rem;
-  --text-button-size: 1rem;
-  --text-button-line: 1.5rem;
-  --text-caption-size: 0.75rem;
-  --text-caption-line: 1.125rem;
+  /* Tipografía Lexend (DESIGN §3) — tamaños en rem (16px root) */
+  --text-display-size: 0.75rem; /* 12px display/H1 mínimo en doc */
+  --text-display-line: 1rem;
+  --text-display-weight: 500;
+
+  --text-title-page-size: 1.5rem; /* H2 24px */
+  --text-title-page-line: 2rem; /* 32px */
+  --text-title-page-weight: 700;
+
+  --text-heading-size: 1rem; /* H3 16px */
+  --text-heading-line: 1.5rem; /* 24px */
+  --text-heading-weight: 500;
+
+  --text-body-base-size: 0.875rem; /* 14px */
+  --text-body-base-line: 1.25rem; /* 20px */
+  --text-body-base-weight: 400;
+
+  --text-body-bold-size: 0.875rem;
+  --text-body-bold-line: 1.875rem; /* 30px según DESIGN */
+  --text-body-bold-weight: 600;
+
+  --text-button-size: 1rem; /* 16px */
+  --text-button-line: 1.5;
+  --text-button-weight: 500;
+
+  --text-button-small-size: 0.875rem;
+  --text-button-small-line: 1.25rem;
+  --text-button-small-weight: 400;
+
+  --text-input-size: 0.8125rem; /* 13px (~13.3px en doc) */
+  --text-input-line: normal;
+  --text-input-weight: 400;
+
+  --text-caption-size: 0.75rem; /* 12px mínimo */
+  --text-caption-line: 1.125rem; /* 18px */
+  --text-caption-weight: 400;
+
+  /* Layout útiles */
+  --width-container-max: 71.25rem; /* 1140px */
+  --size-nav-height: 3.5rem; /* 56px */
+  --size-touch-min: 2.75rem; /* 44px */
+  --size-gutter: 1rem; /* 16px grid gutter */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-bg-default: var(--color-bg-default);
   --color-bg-secondary: var(--color-bg-secondary);
   --color-bg-tertiary: var(--color-bg-tertiary);
   --color-bg-default-hover: var(--color-bg-default-hover);
+  --color-bg-service-tint: var(--color-bg-service-tint);
+  --color-bg-input-disabled: var(--color-bg-input-disabled);
+  --color-bg-input-error: var(--color-bg-input-error);
+  --color-overlay-backdrop: var(--color-overlay-backdrop);
+
   --color-bg-brand: var(--color-bg-brand);
   --color-bg-brand-secondary: var(--color-bg-brand-secondary);
   --color-bg-brand-hover: var(--color-bg-brand-hover);
+  --color-bg-brand-active: var(--color-bg-brand-active);
+  --color-bg-disabled: var(--color-bg-disabled);
+  --color-secondary-button-active: var(--color-secondary-button-active);
+  --color-border-default: var(--color-border-default);
+  --color-border-focus: var(--color-border-focus);
+  --color-deep-teal: var(--color-deep-teal);
+
   --color-bg-positive: var(--color-bg-positive);
   --color-bg-positive-secondary: var(--color-bg-positive-secondary);
   --color-bg-positive-hover: var(--color-bg-positive-hover);
@@ -110,10 +189,23 @@
   --color-bg-danger: var(--color-bg-danger);
   --color-bg-danger-secondary: var(--color-bg-danger-secondary);
   --color-bg-danger-hover: var(--color-bg-danger-hover);
-  --color-bg-disabled: var(--color-bg-disabled);
+
+  --color-neutral-charcoal: var(--color-neutral-charcoal);
+  --color-neutral-medium: var(--color-neutral-medium);
+  --color-neutral-light: var(--color-neutral-light);
+  --color-neutral-label: var(--color-neutral-label);
+  --color-neutral-slate: var(--color-neutral-slate);
+  --color-neutral-very-dark: var(--color-neutral-very-dark);
+  --color-neutral-stone: var(--color-neutral-stone);
+  --color-neutral-heading: var(--color-neutral-heading);
+  --color-pure-black: var(--color-pure-black);
+
   --color-text-default: var(--color-text-default);
   --color-text-secondary: var(--color-text-secondary);
   --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-label: var(--color-text-label);
+  --color-text-slate: var(--color-text-slate);
+  --color-text-heading-emphasis: var(--color-text-heading-emphasis);
   --color-text-brand: var(--color-text-brand);
   --color-text-brand-secondary: var(--color-text-brand-secondary);
   --color-text-brand-tertiary: var(--color-text-brand-tertiary);
@@ -131,31 +223,75 @@
   --color-text-danger-secondary: var(--color-text-danger-secondary);
   --color-text-danger-tertiary: var(--color-text-danger-tertiary);
   --color-text-danger-on: var(--color-text-danger-on);
+  --color-text-input-error: var(--color-text-input-error);
+
   --spacing-050: var(--space-050);
   --spacing-100: var(--space-100);
   --spacing-150: var(--space-150);
   --spacing-200: var(--space-200);
   --spacing-300: var(--space-300);
   --spacing-400: var(--space-400);
+  --spacing-500: var(--space-500);
   --spacing-600: var(--space-600);
+  --spacing-700: var(--space-700);
   --spacing-800: var(--space-800);
   --spacing-1200: var(--space-1200);
-  --spacing-1600: var(--space-1600);
+  --spacing-1300: var(--space-1300);
   --spacing-2400: var(--space-2400);
-  --spacing-4000: var(--space-4000);
+
+  --radius-none: var(--radius-none);
   --radius-100: var(--radius-100);
   --radius-200: var(--radius-200);
   --radius-400: var(--radius-400);
-  --radius-full: var(--radius-full);
   --radius-card: var(--radius-card);
+  --radius-full: var(--radius-full);
   --radius-modal: var(--radius-modal);
-  --radius-none: var(--radius-none);
+
   --shadow-100: var(--shadow-100);
   --shadow-200: var(--shadow-200);
   --shadow-300: var(--shadow-300);
   --shadow-400: var(--shadow-400);
   --shadow-brand-hover: var(--shadow-brand-hover);
-  --font-sans: 'Lexend', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --shadow-inset-active: var(--shadow-inset-active);
+  --shadow-focus-input: var(--shadow-focus-input);
+  --shadow-focus-control: var(--shadow-focus-control);
+
+  --width-container-max: var(--width-container-max);
+  --height-nav: var(--size-nav-height);
+  --size-touch-min: var(--size-touch-min);
+
+  /* Utilidades de texto tipográficas */
+  --text-display: var(--text-display-size);
+  --text-display--line-height: var(--text-display-line);
+  --font-weight-display: var(--text-display-weight);
+
+  --text-title-page: var(--text-title-page-size);
+  --text-title-page--line-height: var(--text-title-page-line);
+
+  --text-heading: var(--text-heading-size);
+  --text-heading--line-height: var(--text-heading-line);
+
+  --text-body: var(--text-body-base-size);
+  --text-body--line-height: var(--text-body-base-line);
+
+  --text-body-strong: var(--text-body-bold-size);
+  --text-body-strong--line-height: var(--text-body-bold-line);
+
+  --text-button: var(--text-button-size);
+  --text-button--line-height: var(--text-button-line);
+
+  --text-button-sm: var(--text-button-small-size);
+  --text-button-sm--line-height: var(--text-button-small-line);
+
+  --text-input: var(--text-input-size);
+  --text-input--line-height: var(--text-input-line);
+
+  --text-caption: var(--text-caption-size);
+  --text-caption--line-height: var(--text-caption-line);
+
+  --font-sans:
+    var(--font-lexend), 'Lexend', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -166,21 +302,25 @@
     --color-bg-default: #17191f;
     --color-bg-secondary: #1b5255;
     --color-bg-tertiary: #495057;
+    --color-bg-service-tint: rgb(27 82 85 / 0.35);
+    --color-bg-input-disabled: #2a2d36;
+    --color-bg-input-error: rgb(198 40 40 / 0.2);
     --color-text-default: #ffffff;
     --color-text-secondary: #ced4da;
     --color-text-tertiary: #aacccc;
+    --color-text-label: #e9ecef;
+    --color-text-slate: #adb5bd;
+    --color-text-heading-emphasis: #ffffff;
     --color-text-on-brand: #ffffff;
+    --color-border-default: #6c757d;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family:
-    'Lexend',
-    'Roboto',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-body-base-size);
+  line-height: var(--text-body-base-line);
+  font-weight: var(--text-body-base-weight);
 }
