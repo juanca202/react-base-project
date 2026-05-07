@@ -20,7 +20,7 @@ Implementar la segunda etapa del flujo para captura de cuenta origen, cuenta des
 ## Referencias
 
 - **Historia:** [US-004 — Transferencias entre cuentas con verificación previa](./README.md)
-- **Diseño (Figma):** [Etapa 2 - Formulario de transferencia](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2865&m=dev)
+- **Diseño (Figma):** [Etapa 2 - Formulario de transferencia](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1794&m=dev)
 - **Diseño (Figma):** [Apoyo UI - Modal de selección de cuentas](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-3077&m=dev)
 - **Documentación técnica:** [GET `/api/accounts` — listado de cuentas para resumen (`Account[]`)](../../technical-docs/api-accounts.md)
 

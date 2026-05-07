@@ -28,8 +28,8 @@
 
 - **Glosario:** [Transferencia](../../glossary.md#transferencia)
 - **Diseño / prototipo (URL):**
-  - Etapa 1 - Selector de tipo de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2814&m=dev)
-  - Etapa 2 - Formulario de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2865&m=dev)
+  - Etapa 1 - Selector de tipo de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1459&m=dev)
+  - Etapa 2 - Formulario de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1794&m=dev)
   - Etapa 3 - Verificación de transferencia: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2920&m=dev)
   - Etapa 4 - Confirmación de éxito: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2984&m=dev)
   - Apoyo UI - Modal de selección de cuentas: [Figma](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-3077&m=dev)

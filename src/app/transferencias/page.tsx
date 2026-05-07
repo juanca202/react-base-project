@@ -1,5 +1,5 @@
-import { DemoPlaceholder } from '@/features/landing/ui/demo-placeholder';
+import { TransferenciasFlow } from '@/features/transferencias/ui/transferencias-flow';
 
 export default function TransferenciasPage() {
-  return <DemoPlaceholder title="Transferencias" />;
+  return <TransferenciasFlow />;
 }

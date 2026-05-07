@@ -19,7 +19,7 @@ Implementar la primera etapa del flujo con el selector de tipo de transferencia,
 ## Referencias
 
 - **Historia:** [US-004 — Transferencias entre cuentas con verificación previa](./README.md)
-- **Diseño (Figma):** [Etapa 1 - Selector de tipo de transferencia](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2814&m=dev)
+- **Diseño (Figma):** [Etapa 1 - Selector de tipo de transferencia](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1459&m=dev)
 
 ## Plan de implementación
 
