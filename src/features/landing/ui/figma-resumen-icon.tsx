@@ -1,26 +1,46 @@
 import Image from 'next/image';
 
-type FigmaResumenIconProps = {
+type FigmaResumenIconBase = {
   src: string;
-  /** Ancho en px (diseño Figma 36:1699). */
-  width: number;
-  /** Alto en px. */
-  height: number;
   alt?: string;
   className?: string;
 };
 
+export type FigmaResumenIconProps = FigmaResumenIconBase &
+  (
+    | { width: number; height: number }
+    | {
+        /** Lado máximo de la caja cuadrada Figma (p. ej. 16); escala el viewBox con uniform scale. */
+        fitBox: number;
+        viewBoxWidth: number;
+        viewBoxHeight: number;
+      }
+  );
+
+function dimsForViewBox(viewBoxWidth: number, viewBoxHeight: number, fitBox: number) {
+  const scale = Math.min(fitBox / viewBoxWidth, fitBox / viewBoxHeight);
+  return {
+    width: Math.max(1, Math.round(viewBoxWidth * scale)),
+    height: Math.max(1, Math.round(viewBoxHeight * scale))
+  };
+}
+
 /**
- * Icono exportado desde Figma: `object-contain` mantiene proporción del viewBox
- * (los SVG del MCP suelen traer `preserveAspectRatio="none"` corregido en repo).
+ * Icono exportado desde Figma. Usar `fitBox` + `viewBoxWidth`/`viewBoxHeight` cuando el asset
+ * no sea cuadrado, para ceñirse a la caja del diseño sin deformar (junto con `preserveAspectRatio="xMidYMid meet"` en el SVG).
  */
-export function FigmaResumenIcon({
-  src,
-  width,
-  height,
-  alt = '',
-  className = ''
-}: FigmaResumenIconProps) {
+export function FigmaResumenIcon(props: FigmaResumenIconProps) {
+  const { src, alt = '', className = '' } = props;
+  let width: number;
+  let height: number;
+  if ('fitBox' in props) {
+    const { fitBox, viewBoxWidth, viewBoxHeight } = props;
+    ({ width, height } = dimsForViewBox(viewBoxWidth, viewBoxHeight, fitBox));
+  } else {
+    width = props.width;
+    height = props.height;
+  }
+
   return (
     <Image
       src={src}

@@ -5,6 +5,9 @@ const LOGIN_PATH = '/iniciar-sesion';
 const AUTHENTICATED_HOME_PATH = '/resumen';
 const PROTECTED_PATHS = [
   AUTHENTICATED_HOME_PATH,
+  '/settings',
+  '/privacy',
+  '/terms',
   '/transferencias',
   '/servicios',
   '/pagos-qr',

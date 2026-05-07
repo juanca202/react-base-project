@@ -20,6 +20,7 @@ Implementar y mantener la pantalla de configuración en la ruta **`/settings`** 
 ## Referencias
 
 - **Historia:** [US-003 — Configuración y legales](./README.md)
+- **Diseño (Figma):** [Pantallas taller SDD — pantalla de configuración (Dev, nodo `36:1639`)](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1639&m=dev)
 - **Documentación técnica:** [`GET /api/settings` — configuración de usuario (`Settings`)](../../technical-docs/api-settings.md) — contrato para consultar datos de perfil; autorización relacionada con [inicio de sesión por token](../../technical-docs/api-token-login.md) cuando aplique.
 
 ## Plan de implementación

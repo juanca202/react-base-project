@@ -1,6 +1,7 @@
 'use client';
 
 import { FigmaResumenIcon } from '@/features/landing/ui/figma-resumen-icon';
+import Link from 'next/link';
 
 export type ResumenHeaderProps = {
   firstName: string;
@@ -17,14 +18,15 @@ export function ResumenHeader({ firstName, onLogout }: ResumenHeaderProps) {
     <header className="mb-6 flex w-full items-center gap-6 pt-2">
       {/* Izquierda: avatar + saludo (misma celda de grid, texto desplazado como en Figma) */}
       <div className="inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start leading-[0]">
-        <div
-          className="col-start-1 row-start-1 flex size-8 items-start justify-start rounded-[16px] bg-[#94e0ed] p-2"
-          aria-hidden
+        <Link
+          href="/settings"
+          className="col-start-1 row-start-1 flex size-8 items-start justify-start rounded-[16px] bg-[#94e0ed] p-2 outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-white"
+          aria-label="Ir a configuración"
         >
-          <span className="relative size-4 shrink-0 overflow-clip">
+          <span className="relative size-4 shrink-0 overflow-clip" aria-hidden>
             <FigmaResumenIcon src="/figma-resumen/icon-user-avatar.svg" width={16} height={16} />
           </span>
-        </div>
+        </Link>
         <div className="col-start-1 row-start-1 ml-[44px] mt-1 flex flex-col justify-center self-center">
           <p className="m-0 whitespace-nowrap text-white">
             <span className="text-[16px] font-normal leading-[24px]">Hola</span>
