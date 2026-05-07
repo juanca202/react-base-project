@@ -3,7 +3,14 @@ import { AUTH_COOKIE, hasValidSessionToken } from '@/lib/auth';
 
 const LOGIN_PATH = '/iniciar-sesion';
 const AUTHENTICATED_HOME_PATH = '/resumen';
-const PROTECTED_PATHS = [AUTHENTICATED_HOME_PATH];
+const PROTECTED_PATHS = [
+  AUTHENTICATED_HOME_PATH,
+  '/transferencias',
+  '/servicios',
+  '/pagos-qr',
+  '/proximos-pagos',
+  '/retirar'
+];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

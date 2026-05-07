@@ -49,3 +49,17 @@ export function hasValidSessionToken(token?: string): boolean {
     return false;
   }
 }
+
+/** Extrae `sub` del JWT mock (demo). */
+export function getUsernameFromSessionToken(token: string): string | null {
+  const parts = token.split('.');
+  if (parts.length !== 3) return null;
+
+  try {
+    const payloadRaw = fromBase64Url(parts[1]);
+    const payload = JSON.parse(payloadRaw) as Partial<MockJwtPayload>;
+    return typeof payload.sub === 'string' ? payload.sub : null;
+  } catch {
+    return null;
+  }
+}

@@ -7,13 +7,27 @@ El DTO de respuesta se denomina `Movement`.
 
 ## Endpoint
 
-| Aspecto   | Valor                             |
-| --------- | --------------------------------- |
-| Metodo    | `GET`                             |
-| Ruta      | `/api/activity`                   |
-| Respuesta | `application/json` (`Movement[]`) |
+| Aspecto        | Valor                             |
+| -------------- | --------------------------------- |
+| Metodo         | `GET`                             |
+| Ruta           | `/api/activity`                   |
+| Codigo exitoso | `200 OK`                          |
+| Respuesta      | `application/json` (`Movement[]`) |
 
 Las rutas publicas del proyecto deben usar segmentos en ingles; `/api/activity` cumple esa convencion.
+
+En el alcance **demo**, la implementacion puede devolver datos estaticos o mock; la integracion con nucleo transaccional real queda fuera de esta especificacion.
+
+## Reglas de negocio (demo)
+
+- **RN-M1** — La respuesta es un arreglo de cero o mas `Movement`; para la landing de resumen se esperan al menos tres movimientos en escenarios de demo con datos precargados (criterio US-002).
+- **RN-M2** — Cada elemento incluye texto para **descripcion**, **fecha** (`date` en ISO 8601) e **importe con signo** (`amount` positivo o negativo); la UI muestra fecha en forma relativa calculada en frontend a partir de `date`.
+- **RN-M3** — Salvo indicacion contraria del producto, conviene ordenar los movimientos del **mas reciente al mas antiguo** para alinear la lista con la seccion de actividad reciente de la maqueta.
+- **RN-M4** — `accountNumber` referencia la cuenta asociada; puede coincidir con valores de `number` en `GET /api/accounts` para coherencia de demo.
+
+## Consumidores (US-002)
+
+- **Landing de resumen** — obtiene el listado para la seccion de ultimos movimientos (descripcion, fecha relativa, importe con signo).
 
 ## Respuesta exitosa — `Movement[]`
 

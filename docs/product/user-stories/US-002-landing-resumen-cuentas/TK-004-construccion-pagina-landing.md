@@ -20,7 +20,7 @@ Construir la pagina de landing de resumen para usuarios autenticados, integrando
 ## Referencias
 
 - **Historia:** [US-002 — Landing](./README.md)
-- **Diseño Figma (nodo 1-1971):** [Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-1971&m=dev)
+- **Diseño Figma (nodo 1-1971):** [Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1699&m=dev)
 - **Technical doc:** [GET /api/accounts](../../../technical-docs/api-accounts.md)
 - **Technical doc:** [GET /api/activity](../../../technical-docs/api-activity.md)
 
