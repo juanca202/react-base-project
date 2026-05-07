@@ -18,7 +18,7 @@ Crear el componente `accountsCarousel` como elemento superior de la pantalla de 
 ## Referencias
 
 - **Historia:** [US-002 — Landing](./README.md)
-- **Diseño Figma (nodo 1-1971):** [Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-1971&m=dev)
+- **Diseño Figma (nodo 1-1971):** [Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1699&m=dev)
 - **Diseño Figma (detalle de cuenta, nodo 1-2503):** [Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-2503&m=dev)
 - **Guía técnica CSS Scroll Snap:** [MDN — Basic concepts of scroll snap](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_snap/Basic_concepts)
 
