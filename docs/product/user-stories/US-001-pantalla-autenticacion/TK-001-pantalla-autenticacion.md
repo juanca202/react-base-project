@@ -24,7 +24,7 @@ Entregar en la aplicación de referencia el comportamiento descrito en **US-001*
 - **Historia y criterios:** [US-001 — Pantalla de autenticación](./README.md).
 - **Contrato HTTP de login:** [api-token-login](../../technical-docs/api-token-login.md).
 - **Preferencias de repo (rutas en inglés, mocks):** [`.agents/MEMORY.md`](../../../../.agents/MEMORY.md).
-- **Diseño:** [Figma — Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-3167&m=dev) (nodo `1-3167`).
+- **Diseño:** [Figma — Pantallas taller SDD](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=36-1533&m=dev) (nodo`36-1533`).
 - **Punto de partida en código (ajustar si el árbol cambia):** [`src/app/login/page.tsx`](../../../../src/app/login/page.tsx), [`src/app/api/token/route.ts`](../../../../src/app/api/token/route.ts) (a crear o completar según este TK), [`src/app/api/mock-login/route.ts`](../../../../src/app/api/mock-login/route.ts) (sustituir o dejar de usar tras migrar), [`src/app/api/mock-logout/route.ts`](../../../../src/app/api/mock-logout/route.ts), [`src/proxy.ts`](../../../../src/proxy.ts).
 
 ## Plan de implementación
