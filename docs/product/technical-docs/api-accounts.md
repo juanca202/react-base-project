@@ -15,6 +15,30 @@ El DTO de respuesta se denomina `Account`.
 
 Las rutas publicas del proyecto deben usar segmentos en ingles; `/api/accounts` cumple esa convencion.
 
+## Autenticacion
+
+El recurso **requiere** contexto de usuario autenticado alineado a **US-001** y al patron de `/api/me`:
+
+- Cabecera `Authorization: Bearer <JWT>` emitido por `POST /api/token`, **o**
+- Cookie de sesion demo `ACCESS_TOKEN_COOKIE` con el mismo JWT.
+
+Si no hay token valido o el JWT no es legible en la demo, la respuesta es **401** (ver **Errores**).
+
+## Errores
+
+| Codigo | Cuerpo (JSON)                 | Cuando                                                    |
+| ------ | ----------------------------- | --------------------------------------------------------- |
+| `401`  | `{ "error": "unauthorized" }` | Sin credenciales validas o token demo ilegible / ausente. |
+
+No se define cuerpo de error adicional para esta demo mas alla de `unauthorized`.
+
+## Reglas de negocio (demo)
+
+- Los datos son **mock** fijos o derivados solo del usuario demo autenticado; no hay nucleo de cuentas real (RN-07 US-002).
+- El listado debe ser suficiente para la landing: al menos dos cuentas con `balance` y `number` para enmascarado en UI.
+- Para `type` = `credit-card`, el campo `balance` es **consumo acumulado**; **no** representa cupo disponible ni limite de credito (el signo concreto sigue la convencion numerica del mock).
+- `saving` y `checking`: `balance` es saldo a favor del titular en moneda de la demo.
+
 ## Respuesta exitosa — `Account[]`
 
 Devuelve un arreglo JSON de `Account`:
@@ -58,3 +82,4 @@ Devuelve un arreglo JSON de `Account`:
 
 - Este contrato cubre el alcance demo del resumen de cuentas.
 - Para `credit-card`, `balance` representa consumo acumulado; el cupo disponible no se expone en este endpoint.
+- La implementacion de referencia en el repo expone tipos TypeScript `Account` y `AccountType` en `src/app/api/accounts/route.ts` (exportados junto al handler `GET`).
