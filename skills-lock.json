@@ -13,6 +13,12 @@
       "skillPath": "skills/prompt-validator/SKILL.md",
       "computedHash": "3a92661588b3638082025c165b49ad6d8ff30c79c4983efe290a3c1ed0d66753"
     },
+    "story-define": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/story-define/SKILL.md",
+      "computedHash": "44967e05a81a32b1e65a7b87f4ac8bcf67f29317ba989b64b359a0343e9e6566"
+    },
     "story-integrate": {
       "source": "juanca202/ai",
       "sourceType": "github",
