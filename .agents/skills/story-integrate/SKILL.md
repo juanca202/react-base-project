@@ -16,10 +16,10 @@ Encaja al final del ciclo iniciado por **story-define** → **story-plan** → *
 
 ## Ubicación de archivos
 
-| Artefacto            | Ruta                                                                   |
-| -------------------- | ---------------------------------------------------------------------- |
-| Carpeta de la US     | `docs/specs/user-stories/US-XXX-[nombre-corto]/`                       |
-| Progreso de la US    | `docs/specs/user-stories/US-XXX-[nombre-corto]/progress.md`            |
+| Artefacto | Ruta |
+|-----------|------|
+| Carpeta de la US | `docs/specs/user-stories/US-XXX-[nombre-corto]/` |
+| Progreso de la US | `docs/specs/user-stories/US-XXX-[nombre-corto]/progress.md` |
 | Tareas referenciadas | `docs/specs/user-stories/US-XXX-[nombre-corto]/TK-XXX-[kebab-case].md` |
 
 ---
@@ -38,14 +38,14 @@ Encaja al final del ciclo iniciado por **story-define** → **story-plan** → *
 
 Antes de tocar git, el agente debe tener clara la siguiente información. **No asumir nada** — si algún dato no se resuelve, preguntar al usuario.
 
-| Dato                        | Cómo obtenerlo                                                                                                                | Si no está disponible                                                                                         |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Rama actual**             | `git branch --show-current`                                                                                                   | Si no encaja con el patrón `feature/US-XXX-[nombre-corto]`: preguntar a qué US corresponde antes de continuar |
-| **Carpeta de la US**        | Derivar del nombre de rama descontando el prefijo `feature/`                                                                  | Si la carpeta no existe: parar e informar; si hay varias coincidentes: preguntar cuál                         |
-| **Estado de `progress.md`** | Leer el archivo en la carpeta de la US                                                                                        | Si no existe: parar e informar; el merge requiere `progress.md` poblado                                       |
-| **Working tree**            | `git status --porcelain`                                                                                                      | Si hay salida: parar e informar; no se mergea con cambios pendientes                                          |
-| **Rama base**               | (1) `git reflog show <branch>` → línea «Created from»; (2) `git config --get branch.<branch>.merge`; (3) preguntar al usuario | No asumir `main`, `master` ni `develop` por defecto                                                           |
-| **Idioma de preferencia**   | (1) idioma del turno del usuario; (2) `.agent/MEMORY.md` → `preferred language: <ISO>`                                        | Preguntar y crear/actualizar `.agent/MEMORY.md` con `preferred language: <código>`                            |
+| Dato | Cómo obtenerlo | Si no está disponible |
+|------|----------------|-----------------------|
+| **Rama actual** | `git branch --show-current` | Si no encaja con el patrón `feature/US-XXX-[nombre-corto]`: preguntar a qué US corresponde antes de continuar |
+| **Carpeta de la US** | Derivar del nombre de rama descontando el prefijo `feature/` | Si la carpeta no existe: parar e informar; si hay varias coincidentes: preguntar cuál |
+| **Estado de `progress.md`** | Leer el archivo en la carpeta de la US | Si no existe: parar e informar; el merge requiere `progress.md` poblado |
+| **Working tree** | `git status --porcelain` | Si hay salida: parar e informar; no se mergea con cambios pendientes |
+| **Rama base** | (1) `git reflog show <branch>` → línea «Created from»; (2) `git config --get branch.<branch>.merge`; (3) preguntar al usuario | No asumir `main`, `master` ni `develop` por defecto |
+| **Idioma de preferencia** | (1) idioma del turno del usuario; (2) `.agent/MEMORY.md` → `preferred language: <ISO>` | Preguntar y crear/actualizar `.agent/MEMORY.md` con `preferred language: <código>` |
 
 > Leer `progress.md` **completo** antes de iniciar cualquier operación git. Las tres condiciones (rama, working tree, estados) se evalúan antes de cambiar de rama o invocar `git merge`.
 
@@ -56,7 +56,6 @@ Antes de tocar git, el agente debe tener clara la siguiente información. **No a
 Antes de cambiar de rama o ejecutar el merge, verificar las siguientes condiciones. Si alguna falla, **no mergear** — informar al usuario y resolver primero.
 
 **¿Qué verificar?**
-
 - **Rama actual con formato válido:** `feature/US-XXX-[nombre-corto]`. Sin el prefijo `feature/` o sin el segmento `US-XXX-...` no se puede derivar la carpeta de la US.
 - **Working tree limpio:** `git status --porcelain` sin salida. Cualquier cambio sin commitear bloquea el merge.
 - **Carpeta de la US existe:** `docs/specs/user-stories/US-XXX-[nombre-corto]/` presente con `progress.md` dentro.
@@ -64,7 +63,6 @@ Antes de cambiar de rama o ejecutar el merge, verificar las siguientes condicion
 - **Rama base resoluble:** identificada por reflog, por config, o confirmada explícitamente por el usuario. Si hay varios candidatos plausibles y ninguno definitivo, preguntar.
 
 **Si hay conflicto:**
-
 ```
 ⚠️ No es posible mergear todavía:
 - <razón concreta>
@@ -118,28 +116,24 @@ Cuando reflog y config no concluyen, o existen varios candidatos plausibles.
 ## Checklist antes de mergear
 
 **Información:**
-
 - [ ] Rama actual detectada y validada contra `feature/US-XXX-[nombre-corto]`
 - [ ] Carpeta de la US localizada en `docs/specs/user-stories/US-XXX-[nombre-corto]/`
 - [ ] Rama base resuelta (reflog, config o confirmación del usuario)
 - [ ] Idioma de preferencia determinado y `.agent/MEMORY.md` actualizado si fue necesario
 
 **Validación:**
-
 - [ ] `git status --porcelain` sin salida (working tree limpio)
 - [ ] `progress.md` existe en la carpeta de la US
 - [ ] **Todas** las tareas de `progress.md` en estado `done`
 - [ ] Sin commits sin commitear ni stash sin aplicar relevante al alcance
 
 **Ejecución:**
-
 - [ ] `git checkout <base>` exitoso
 - [ ] `git merge --no-ff` exitoso, sin conflictos
 - [ ] Hash del commit de merge capturado para el reporte
 - [ ] Número de commits integrados calculado antes del checkout
 
 **Cierre:**
-
 - [ ] Reporte al usuario con rama origen, rama destino, commits integrados y hash de merge
 - [ ] Sin push ejecutado
 - [ ] Sin borrado de rama ejecutado
@@ -151,13 +145,13 @@ Cuando reflog y config no concluyen, o existen varios candidatos plausibles.
 
 **Ejemplo 1 — Camino feliz**
 
-- _Entrada:_ Rama `feature/US-042-exportacion-csv`, working tree limpio, `progress.md` con tres tareas todas en `done`, reflog indica `Created from develop`.
-- _Salida:_ `git checkout develop` → `git merge --no-ff feature/US-042-exportacion-csv -m "Merge US-042: exportacion-csv"` → reporte: «Merged 7 commits de `feature/US-042-exportacion-csv` → `develop`. Commit de merge: `a1b2c3d`. HEAD en `develop`, working tree limpio. La rama de US no fue borrada ni se hizo push.»
+- *Entrada:* Rama `feature/US-042-exportacion-csv`, working tree limpio, `progress.md` con tres tareas todas en `done`, reflog indica `Created from develop`.
+- *Salida:* `git checkout develop` → `git merge --no-ff feature/US-042-exportacion-csv -m "Merge US-042: exportacion-csv"` → reporte: «Merged 7 commits de `feature/US-042-exportacion-csv` → `develop`. Commit de merge: `a1b2c3d`. HEAD en `develop`, working tree limpio. La rama de US no fue borrada ni se hizo push.»
 
 **Ejemplo 2 — Tarea pendiente**
 
-- _Entrada:_ Rama `feature/US-013-ajuste-permisos`, working tree limpio, `progress.md` con TK-001 en `done` y TK-002 en `in-progress`.
-- _Salida:_ Sin operaciones git. Mensaje:
+- *Entrada:* Rama `feature/US-013-ajuste-permisos`, working tree limpio, `progress.md` con TK-001 en `done` y TK-002 en `in-progress`.
+- *Salida:* Sin operaciones git. Mensaje:
   ```
   ⚠️ No es posible mergear todavía:
   - progress.md tiene tareas no-done:
@@ -168,23 +162,23 @@ Cuando reflog y config no concluyen, o existen varios candidatos plausibles.
 
 **Ejemplo 3 — Rama base ambigua**
 
-- _Entrada:_ Rama `feature/US-077-...`, reflog sin entrada «Created from», sin upstream local; existen `main`, `develop` y `release/2026.q2` como ancestros plausibles.
-- _Comportamiento:_ El agente lista los candidatos y pregunta cuál es la rama base correcta. No asume `main` ni `develop`. No mergea hasta tener respuesta.
+- *Entrada:* Rama `feature/US-077-...`, reflog sin entrada «Created from», sin upstream local; existen `main`, `develop` y `release/2026.q2` como ancestros plausibles.
+- *Comportamiento:* El agente lista los candidatos y pregunta cuál es la rama base correcta. No asume `main` ni `develop`. No mergea hasta tener respuesta.
 
 **Ejemplo 4 — Working tree sucio**
 
-- _Entrada:_ Rama `feature/US-051-...`, dos archivos modificados sin commitear, `progress.md` íntegro en `done`.
-- _Salida:_ Sin operaciones git. Mensaje listando los archivos pendientes y pidiendo commit, stash o descarte antes de reintentar.
+- *Entrada:* Rama `feature/US-051-...`, dos archivos modificados sin commitear, `progress.md` íntegro en `done`.
+- *Salida:* Sin operaciones git. Mensaje listando los archivos pendientes y pidiendo commit, stash o descarte antes de reintentar.
 
 **Ejemplo 5 — Conflicto en el merge**
 
-- _Entrada:_ Verificaciones OK, rama base `main`, `git merge --no-ff` produce conflictos en `src/app/Module.java`.
-- _Comportamiento:_ El agente ejecuta `git merge --abort`, deja el repo en el estado previo, lista los archivos en conflicto y pide al usuario resolverlos manualmente. No reintenta.
+- *Entrada:* Verificaciones OK, rama base `main`, `git merge --no-ff` produce conflictos en `src/app/Module.java`.
+- *Comportamiento:* El agente ejecuta `git merge --abort`, deja el repo en el estado previo, lista los archivos en conflicto y pide al usuario resolverlos manualmente. No reintenta.
 
 **Ejemplo 6 — Rama sin prefijo `feature/`**
 
-- _Entrada:_ Rama `US-099-cleanup-logs` (sin el prefijo `feature/`), `progress.md` íntegro en `done`.
-- _Salida:_ Sin operaciones git. Mensaje: «La rama actual `US-099-cleanup-logs` no cumple el patrón `feature/US-XXX-[nombre-corto]`. Renombra la rama con `git branch -m feature/US-099-cleanup-logs` antes de reintentar el submit.»
+- *Entrada:* Rama `US-099-cleanup-logs` (sin el prefijo `feature/`), `progress.md` íntegro en `done`.
+- *Salida:* Sin operaciones git. Mensaje: «La rama actual `US-099-cleanup-logs` no cumple el patrón `feature/US-XXX-[nombre-corto]`. Renombra la rama con `git branch -m feature/US-099-cleanup-logs` antes de reintentar el submit.»
 
 ---
 

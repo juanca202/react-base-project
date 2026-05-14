@@ -1,17 +1,29 @@
 {
   "version": 1,
   "skills": {
+    "adr-manage": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/adr-manage/SKILL.md",
+      "computedHash": "d6ac2768a5cfff563335597d5fadd878d62e6d58cec44cf02924b0b504a31d3d"
+    },
     "code-review": {
       "source": "juanca202/ai",
       "sourceType": "github",
       "skillPath": "skills/code-review/SKILL.md",
       "computedHash": "614b9b115583a2af36f48efb3b79d250039941365117f60938be45d3047bc5e4"
     },
+    "git-commit": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "computedHash": "03ad518164a53867bf568792ecdf8c1bae7d29bdcd61e2426457f12027439df3"
+    },
     "prompt-validator": {
       "source": "juanca202/ai",
       "sourceType": "github",
       "skillPath": "skills/prompt-validator/SKILL.md",
-      "computedHash": "3a92661588b3638082025c165b49ad6d8ff30c79c4983efe290a3c1ed0d66753"
+      "computedHash": "533ed8bb20184945a256253f6b8ad67cc3a02d935ff54e7d8b8cba88f28f4591"
     },
     "story-define": {
       "source": "juanca202/ai",
@@ -19,11 +31,23 @@
       "skillPath": "skills/story-define/SKILL.md",
       "computedHash": "44967e05a81a32b1e65a7b87f4ac8bcf67f29317ba989b64b359a0343e9e6566"
     },
+    "story-implement": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/story-implement/SKILL.md",
+      "computedHash": "2973bcaa25850b85d6cc302eeb25d8b883e56bf81c54e463d16dfa4c1cf0d589"
+    },
     "story-integrate": {
       "source": "juanca202/ai",
       "sourceType": "github",
       "skillPath": "skills/story-integrate/SKILL.md",
       "computedHash": "c5e297f4243f75dc592f3b41d24e38614348a6e00cfbc293ced654f4b5aae695"
+    },
+    "story-plan": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/story-plan/SKILL.md",
+      "computedHash": "905f48cd46d55d28dd50682aa4933bd67439bbf8f4d378165b60db0689669740"
     }
   }
 }

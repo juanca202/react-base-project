@@ -1,8 +1,8 @@
 ---
-
-## name: prompt-validator
+name: prompt-validator
 description: Validar prompts dirigidos a agentes de IA (Claude Code, Cursor, Copilot, etc.) contra reglas de redacción efectiva. Calcular un porcentaje de efectividad del prompt y devolver sugerencias de mejora concretas, más una propuesta de prompt reescrito. Cubre verbos no imperativos, lenguaje conversacional, acciones vagas, términos subjetivos, alcance difuso, prohibiciones implícitas, intenciones múltiples y nombres genéricos. Las reglas de detalle técnico (alcance, nombres exactos) se aplican solo a prompts de implementación; en prompts funcionales (user stories, descripciones de comportamiento) se marcan N/A. Usar siempre que el usuario pida validar, revisar, auditar, mejorar, corregir o "pulir" un prompt antes de enviarlo a un agente, o cuando pegue un prompt y pida feedback sobre cómo está redactado.
 license: MIT
+---
 
 # Skill: Validador de Prompts
 
@@ -37,7 +37,7 @@ Usar cuando el usuario pida revisar, validar, mejorar o auditar un prompt; o cua
 **No incluye:**
 
 - Ejecutar o cumplir el prompt (no escribir el código, middleware, refactor, etc. que el prompt pide).
-- Evaluar la _corrección técnica_ del contenido del prompt (si la solución pedida tiene sentido en el stack del usuario). El skill audita **redacción**, no **arquitectura**.
+- Evaluar la *corrección técnica* del contenido del prompt (si la solución pedida tiene sentido en el stack del usuario). El skill audita **redacción**, no **arquitectura**.
 - Reglas distintas de las 11 listadas (estilo de redacción literaria, ortografía, gramática general).
 - Validar prompts para imagen, audio o tareas no-código (el skill está calibrado a prompts de desarrollo).
 
@@ -52,8 +52,11 @@ Para ejecutar bien el skill, el agente necesita:
   - **`type`** — declara explícitamente el tipo de prompt. Valores permitidos:
     - `Funcional` — describe comportamiento, criterios de aceptación, reglas de negocio o necesidad del usuario (p. ej. user stories, descripciones de feature, especificaciones de comportamiento). No requiere detalles técnicos como rutas, nombres de clase o archivos. **Las reglas de delimitar alcance y usar nombres exactos se marcan N/A.**
     - `Técnico` — solicita implementación, refactor o cambios concretos de código (p. ej. "crea AuthService", "refactoriza /features/auth"). **Las reglas de delimitar alcance y usar nombres exactos aplican plenamente.**
-      El usuario puede declararlo de varias formas: `type: Funcional`, `type=Funcional`, `tipo=Funcional`, o en lenguaje natural ("es un prompt funcional", "este es técnico"). El agente reconoce ambas formas y normaliza variantes sin acento (`tecnico` → `Técnico`).
-      Si **no se declara**, el agente lo **infiere** — ver paso 0 de [Ejecución del análisis](#ejecución-del-análisis).
+
+    El usuario puede declararlo de varias formas: `type: Funcional`, `type=Funcional`, `tipo=Funcional`, o en lenguaje natural ("es un prompt funcional", "este es técnico"). El agente reconoce ambas formas y normaliza variantes sin acento (`tecnico` → `Técnico`).
+
+    Si **no se declara**, el agente lo **infiere** — ver paso 0 de [Ejecución del análisis](#ejecución-del-análisis).
+
   - Lenguaje/stack del proyecto (ayuda a juzgar si un nombre es "exacto" o genérico, p. ej. `AuthService` vs `un servicio`).
   - Si el usuario quiere **solo las sugerencias** o **también el prompt reescrito** (por defecto: ambos).
   - Si el prompt es **un fragmento** de uno mayor o **independiente** (un fragmento puede legítimamente referirse a contexto ya establecido).
@@ -117,12 +120,10 @@ Aplicar a `Reglas no evaluables`, `Reglas cumplidas` y a la cita `Regla:` dentro
 **Ejemplo de formato:**
 
 > **Reglas no evaluables:**
->
 > - Delimitar el alcance (N/A en prompt funcional)
 > - Usar nombres exactos (N/A en prompt funcional)
 >
 > **Reglas cumplidas:**
->
 > - Usar verbos imperativos directos
 > - Evitar lenguaje conversacional
 > - Usar acciones específicas
@@ -243,6 +244,7 @@ Detectar prompts que enumeran ≥2 acciones en una sola línea separadas por com
 
 - MAL: `Implementa middleware auth, hook useAuth y redirect a /login`
 - BIEN:
+
   ```
   Implementa:
   - middleware auth
@@ -256,21 +258,19 @@ Detectar prompts que enumeran ≥2 acciones en una sola línea separadas por com
 
 Para cada prompt recibido, el agente debe:
 
-1. **Determinar el tipo de prompt**:
-
-- **Si el usuario declaró `type` explícitamente** (p. ej. `type: Funcional`, `type=Tecnico`, `tipo=Funcional`, o en lenguaje natural como "este es un prompt funcional"), usar ese valor. Normalizar variantes sin acento (`tecnico` → `Técnico`, `funcional` → `Funcional`).
-- **Si no se declaró**, inferirlo:
-  - **Funcional** si el prompt: usa lenguaje de comportamiento (`el sistema debe`, `el usuario puede`, `como ... quiero ... para ...`), describe criterios de aceptación, casos de uso o reglas de negocio, y **no** menciona archivos, rutas, clases, funciones ni verbos de codificación.
-  - **Técnico** si el prompt: pide implementar / refactorizar / crear / modificar / corregir código, menciona archivos, rutas, clases, funciones, endpoints, o usa verbos de codificación (`implementa`, `crea`, `refactoriza`, `migra`, `optimiza`, `arregla`).
-  - Si es **ambiguo**, asumir **Técnico** (criterio más estricto: aplica más reglas).
-- **Declarar el tipo en el output**. Si fue **inferido** (no declarado), añadir la nota: _"Tipo inferido; declara `type: Funcional` o `type: Técnico` si quieres cambiarlo."_. Si fue **declarado**, no añadir nota.
-
-2. **Leer el prompt completo** y separarlo en frases u oraciones.
-3. **Aplicar las 11 reglas en orden**, frase por frase. Una misma frase puede activar varias sugerencias (p. ej. `Me gustaría que mejores el código de forma elegante` activa R-1, R-2, R-3 y R-4). Si el tipo es Funcional, **omitir** R-5 y R-10 (marcar N/A).
-4. **Citar literalmente** el fragmento en el campo "Texto actual" de cada sugerencia. No parafrasear el fragmento original; sí parafrasear/reescribir en la propuesta.
-5. **Producir la propuesta más concreta posible**. Si falta contexto (p. ej. para nombrar `AuthService`), proponer un placeholder explícito y pedir confirmación.
-6. **Calcular la efectividad** según la fórmula en [Salidas › Cálculo de efectividad](#cálculo-de-efectividad).
-7. **Generar el prompt reescrito** integrando todas las sugerencias, manteniendo la intención original del usuario. No añadir requisitos nuevos que el prompt no contemplaba.
+0. **Determinar el tipo de prompt**:
+   - **Si el usuario declaró `type` explícitamente** (p. ej. `type: Funcional`, `type=Tecnico`, `tipo=Funcional`, o en lenguaje natural como "este es un prompt funcional"), usar ese valor. Normalizar variantes sin acento (`tecnico` → `Técnico`, `funcional` → `Funcional`).
+   - **Si no se declaró**, inferirlo:
+     - **Funcional** si el prompt: usa lenguaje de comportamiento (`el sistema debe`, `el usuario puede`, `como ... quiero ... para ...`), describe criterios de aceptación, casos de uso o reglas de negocio, y **no** menciona archivos, rutas, clases, funciones ni verbos de codificación.
+     - **Técnico** si el prompt: pide implementar / refactorizar / crear / modificar / corregir código, menciona archivos, rutas, clases, funciones, endpoints, o usa verbos de codificación (`implementa`, `crea`, `refactoriza`, `migra`, `optimiza`, `arregla`).
+     - Si es **ambiguo**, asumir **Técnico** (criterio más estricto: aplica más reglas).
+   - **Declarar el tipo en el output**. Si fue **inferido** (no declarado), añadir la nota: *"Tipo inferido; declara `type: Funcional` o `type: Técnico` si quieres cambiarlo."*. Si fue **declarado**, no añadir nota.
+1. **Leer el prompt completo** y separarlo en frases u oraciones.
+2. **Aplicar las 11 reglas en orden**, frase por frase. Una misma frase puede activar varias sugerencias (p. ej. `Me gustaría que mejores el código de forma elegante` activa R-1, R-2, R-3 y R-4). Si el tipo es Funcional, **omitir** R-5 y R-10 (marcar N/A).
+3. **Citar literalmente** el fragmento en el campo "Texto actual" de cada sugerencia. No parafrasear el fragmento original; sí parafrasear/reescribir en la propuesta.
+4. **Producir la propuesta más concreta posible**. Si falta contexto (p. ej. para nombrar `AuthService`), proponer un placeholder explícito y pedir confirmación.
+5. **Calcular la efectividad** según la fórmula en [Salidas › Cálculo de efectividad](#cálculo-de-efectividad).
+6. **Generar el prompt reescrito** integrando todas las sugerencias, manteniendo la intención original del usuario. No añadir requisitos nuevos que el prompt no contemplaba.
 
 ---
 
@@ -317,8 +317,8 @@ Reglas que pueden ser **N/A** (y se excluyen de N):
 
 Redactar cada sugerencia en clave de mejora, no de fallo:
 
-- BIEN: _"Reemplaza el texto conversacional por un imperativo directo: reduce ambigüedad para el agente."_
-- MAL: _"Incumples R-2 porque usas lenguaje conversacional."_
+- BIEN: *"Reemplaza el texto conversacional por un imperativo directo: reduce ambigüedad para el agente."*
+- MAL: *"Incumples R-2 porque usas lenguaje conversacional."*
 
 ### Orden de presentación
 
@@ -328,11 +328,11 @@ Las sugerencias se numeran en el orden de las reglas (R-1 → R-11), no por seve
 
 El parámetro `type` (`Funcional` o `Técnico`) lo declara el usuario. Solo si **no** lo declara, el agente lo infiere con esta heurística:
 
-| Señal                                                                                                            | Tipo           |
-| ---------------------------------------------------------------------------------------------------------------- | -------------- |
-| `como ... quiero ... para ...`, criterios de aceptación, "el sistema debe", "el usuario puede"                   | Funcional      |
-| Verbos imperativos de código (`implementa`, `crea`, `refactoriza`, `migra`), referencias a rutas/archivos/clases | Técnico        |
-| Mezcla ambigua o muy corto                                                                                       | Asumir Técnico |
+| Señal | Tipo |
+|---|---|
+| `como ... quiero ... para ...`, criterios de aceptación, "el sistema debe", "el usuario puede" | Funcional |
+| Verbos imperativos de código (`implementa`, `crea`, `refactoriza`, `migra`), referencias a rutas/archivos/clases | Técnico |
+| Mezcla ambigua o muy corto | Asumir Técnico |
 
 Si el tipo fue **inferido**, declararlo en el output y ofrecer al usuario corregirlo en una nueva pasada con `type: Funcional` o `type: Técnico`.
 

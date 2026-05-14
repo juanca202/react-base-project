@@ -16,13 +16,13 @@ El skill **no** corrige código, **no** modifica configuración, **no** instala 
 
 Validar de forma reproducible que un cambio (working tree, rama, branch) pasa los 5 checks acordados, en este orden:
 
-| #   | Check  | Categoría         | Comando base                | Política                                                           |
-| --- | ------ | ----------------- | --------------------------- | ------------------------------------------------------------------ |
-| 1   | Tipado | **Crítico**       | `tsc --noEmit`              | Bloqueante. **Fail-fast**: si falla, parar y no ejecutar el resto. |
-| 2   | Linter | Calidad           | `eslint`                    | Bloqueante solo si hay `error`s. Warnings = informativos.          |
-| 3   | Tests  | Comportamiento    | script `test` del proyecto  | Bloqueante.                                                        |
-| 4   | Build  | Integración       | script `build` del proyecto | Bloqueante.                                                        |
-| 5   | Sonar  | Análisis estático | `sonar-scanner`             | **Nunca bloqueante**. Solo informativo.                            |
+| # | Check | Categoría | Comando base | Política |
+|---|-------|-----------|--------------|----------|
+| 1 | Tipado | **Crítico** | `tsc --noEmit` | Bloqueante. **Fail-fast**: si falla, parar y no ejecutar el resto. |
+| 2 | Linter | Calidad | `eslint` | Bloqueante solo si hay `error`s. Warnings = informativos. |
+| 3 | Tests | Comportamiento | script `test` del proyecto | Bloqueante. |
+| 4 | Build | Integración | script `build` del proyecto | Bloqueante. |
+| 5 | Sonar | Análisis estático | `sonar-scanner` | **Nunca bloqueante**. Solo informativo. |
 
 **Veredicto final:**
 
@@ -84,15 +84,15 @@ Para ejecutar el skill, el agente necesita:
 
 ## Modificadores de invocación
 
-| Modificador               | Efecto                                                                           |
-| ------------------------- | -------------------------------------------------------------------------------- |
-| `default`                 | Ejecutar los 5 checks con la política descrita arriba.                           |
-| `solo-bloqueantes`        | Ejecutar tsc, eslint, tests, build. Omitir sonar.                                |
+| Modificador | Efecto |
+|-------------|--------|
+| `default` | Ejecutar los 5 checks con la política descrita arriba. |
+| `solo-bloqueantes` | Ejecutar tsc, eslint, tests, build. Omitir sonar. |
 | `incluir-warnings-eslint` | Tratar warnings de eslint como errores. Equivalente a `eslint --max-warnings=0`. |
-| `sin-sonar`               | Omitir sonar-scanner (útil en local sin servidor Sonar).                         |
-| `sin-tests`               | Omitir tests (útil para verificar tipado/build rápido).                          |
-| `solo <check>`            | Ejecutar únicamente el check indicado (p. ej. `solo tsc`).                       |
-| `guardar-informe`         | Persistir el informe en `docs/code-review/<YYYYMMDD-HHMMSS>.md`.                 |
+| `sin-sonar` | Omitir sonar-scanner (útil en local sin servidor Sonar). |
+| `sin-tests` | Omitir tests (útil para verificar tipado/build rápido). |
+| `solo <check>` | Ejecutar únicamente el check indicado (p. ej. `solo tsc`). |
+| `guardar-informe` | Persistir el informe en `docs/code-review/<YYYYMMDD-HHMMSS>.md`. |
 
 Si el usuario no especifica modificador, asumir `default`.
 
@@ -192,13 +192,13 @@ Antes de ejecutar nada:
 
 Para cada check, elegir comando en este orden de preferencia:
 
-| Check  | Preferencia 1 (script en package.json)                                                                                     | Fallback (si no hay script)                                                                  |
-| ------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| tsc    | `<runner> run typecheck` o `type-check`                                                                                    | `npx tsc --noEmit`                                                                           |
-| eslint | `<runner> run lint`                                                                                                        | `npx eslint . --max-warnings=9999` (para no fallar por warnings; el conteo lo hace el skill) |
-| tests  | `<runner> run test:ci`, si no hay → `<runner> run test`, si no hay → `npx vitest run` o `npx jest` según `devDependencies` | (lo anterior es ya el fallback)                                                              |
-| build  | `<runner> run build`                                                                                                       | `npx tsc -p tsconfig.build.json` si existe, sino SKIPPED                                     |
-| sonar  | `sonar-scanner` (binario en PATH)                                                                                          | `npx sonar-scanner`                                                                          |
+| Check | Preferencia 1 (script en package.json) | Fallback (si no hay script) |
+|-------|----------------------------------------|------------------------------|
+| tsc | `<runner> run typecheck` o `type-check` | `npx tsc --noEmit` |
+| eslint | `<runner> run lint` | `npx eslint . --max-warnings=9999` (para no fallar por warnings; el conteo lo hace el skill) |
+| tests | `<runner> run test:ci`, si no hay → `<runner> run test`, si no hay → `npx vitest run` o `npx jest` según `devDependencies` | (lo anterior es ya el fallback) |
+| build | `<runner> run build` | `npx tsc -p tsconfig.build.json` si existe, sino SKIPPED |
+| sonar | `sonar-scanner` (binario en PATH) | `npx sonar-scanner` |
 
 **Adicional para sonar**: si no existe `sonar-project.properties` ni `sonar.properties` en la raíz, marcar SKIPPED con motivo `sin sonar-project.properties` antes incluso de intentar invocarlo.
 
@@ -251,19 +251,19 @@ Devolver el informe completo al usuario. **No** continuar con `git commit`, `git
 
 ## Failure handling
 
-| Situación                                                                      | Cómo actuar                                                                                                                                                                 |
-| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Falta `package.json`                                                           | Parar antes de ejecutar nada.                                                                                                                                               |
-| Falta `tsconfig.json`                                                          | tsc → SKIPPED. Continuar con eslint, tests, build, sonar. Veredicto final: **Incompleto**.                                                                                  |
-| Runner (`npm`/`pnpm`/`yarn`) ausente del PATH                                  | Parar y preguntar al usuario qué runner usa.                                                                                                                                |
-| Script declarado en `package.json` pero binario inexistente                    | FAIL con código de salida y mensaje. **No** SKIPPED — el proyecto está mal configurado, no ausente.                                                                         |
-| Test runner en `devDependencies` pero sin script ni config                     | Intentar `npx vitest run` o `npx jest`. Si ambos fallan, SKIPPED.                                                                                                           |
-| `sonar-scanner` no en PATH y `npx sonar-scanner` falla por no estar instalable | SKIPPED con motivo `sonar-scanner no disponible`. Veredicto **no** se ve afectado (sonar no es bloqueante).                                                                 |
-| Falta `sonar-project.properties`                                               | SKIPPED con motivo `sin sonar-project.properties`. No bloquea veredicto.                                                                                                    |
-| Errores de red en sonar (servidor inaccesible)                                 | FAIL con motivo de red. No bloquea veredicto.                                                                                                                               |
-| Tiempo de ejecución > 10 min en un check                                       | Continuar pero avisar al usuario: `⚠️ <check> lleva > 10 min, sigue corriendo`. Permitir cancelación.                                                                       |
-| Working tree sucio                                                             | No bloquea. Incluir nota en el encabezado del informe: `working tree con N archivos modificados; los checks reflejan el estado actual del filesystem, no el último commit`. |
-| `tsc` FAIL                                                                     | **STOP. Fail-fast.** Marcar los 4 restantes como `— (no ejecutado)`.                                                                                                        |
+| Situación | Cómo actuar |
+|-----------|-------------|
+| Falta `package.json` | Parar antes de ejecutar nada. |
+| Falta `tsconfig.json` | tsc → SKIPPED. Continuar con eslint, tests, build, sonar. Veredicto final: **Incompleto**. |
+| Runner (`npm`/`pnpm`/`yarn`) ausente del PATH | Parar y preguntar al usuario qué runner usa. |
+| Script declarado en `package.json` pero binario inexistente | FAIL con código de salida y mensaje. **No** SKIPPED — el proyecto está mal configurado, no ausente. |
+| Test runner en `devDependencies` pero sin script ni config | Intentar `npx vitest run` o `npx jest`. Si ambos fallan, SKIPPED. |
+| `sonar-scanner` no en PATH y `npx sonar-scanner` falla por no estar instalable | SKIPPED con motivo `sonar-scanner no disponible`. Veredicto **no** se ve afectado (sonar no es bloqueante). |
+| Falta `sonar-project.properties` | SKIPPED con motivo `sin sonar-project.properties`. No bloquea veredicto. |
+| Errores de red en sonar (servidor inaccesible) | FAIL con motivo de red. No bloquea veredicto. |
+| Tiempo de ejecución > 10 min en un check | Continuar pero avisar al usuario: `⚠️ <check> lleva > 10 min, sigue corriendo`. Permitir cancelación. |
+| Working tree sucio | No bloquea. Incluir nota en el encabezado del informe: `working tree con N archivos modificados; los checks reflejan el estado actual del filesystem, no el último commit`. |
+| `tsc` FAIL | **STOP. Fail-fast.** Marcar los 4 restantes como `— (no ejecutado)`. |
 
 ---
 
@@ -295,28 +295,23 @@ Evitar al ejecutar este skill:
 Patrones de salida que el skill debe reconocer para extraer conteos y primeros errores:
 
 **tsc**
-
 - Patrón: `<archivo>(<línea>,<columna>): error TS<código>: <mensaje>`
 - Conteo: número de líneas que coinciden con `: error TS`.
 - Si hay 0 líneas con `error TS` y código de salida 0 → OK.
 
 **eslint**
-
 - Preferir invocar con `--format json` cuando se invoca por fallback (no script). Si se invoca por script y se desconoce el formato, parsear la línea final tipo `X problems (Y errors, Z warnings)`.
 - Estado: `error`s > 0 → FAIL. `error`s = 0 y `warning`s > 0 → OK con detalle de warnings.
 
 **tests (Vitest / Jest)**
-
 - Patrón final típico Vitest: `Test Files  X passed (X) | Y failed (Y)` y `Tests  P passed | F failed | S skipped`.
 - Patrón final típico Jest: `Tests: P passed, F failed, S skipped, T total`.
 - Estado: código 0 → OK. Código ≠ 0 → FAIL con detalle de tests fallidos (primeros 10).
 
 **build**
-
 - Estado por código de salida. Si el build usa `tsc -p tsconfig.build.json`, parsear errores con el mismo patrón de tsc. Si usa Vite/esbuild/Rollup, capturar el bloque final de error (suelen imprimir un resumen).
 
 **sonar-scanner**
-
 - Éxito: código 0 y log final contiene `EXECUTION SUCCESS`.
 - Capturar URL del dashboard si aparece en el log (`ANALYSIS SUCCESSFUL, you can find the results at: <url>`). Incluirla en el informe.
 
