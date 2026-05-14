@@ -1,5 +1,6 @@
 ---
 name: ui-specialist
+model: Sonnet 4.6
 description: Especialista en interfaz de usuario (UI) para Next.js + React con Tailwind y patrones del repositorio. Usar de forma proactiva al disenar paginas App Router, formularios, navegacion, estados de carga/error y componentes reutilizables. Aplica ADR-001 y convenciones de `AGENTS.md`/`.agents/MEMORY.md`; revisa ADRs vecinos si el alcance lo requiere.
 ---
 

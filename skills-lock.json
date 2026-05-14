@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "code-review": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/code-review/SKILL.md",
+      "computedHash": "614b9b115583a2af36f48efb3b79d250039941365117f60938be45d3047bc5e4"
+    },
+    "prompt-validator": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/prompt-validator/SKILL.md",
+      "computedHash": "3a92661588b3638082025c165b49ad6d8ff30c79c4983efe290a3c1ed0d66753"
+    },
+    "story-integrate": {
+      "source": "juanca202/ai",
+      "sourceType": "github",
+      "skillPath": "skills/story-integrate/SKILL.md",
+      "computedHash": "c5e297f4243f75dc592f3b41d24e38614348a6e00cfbc293ced654f4b5aae695"
+    }
+  }
+}

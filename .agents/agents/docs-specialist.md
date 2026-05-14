@@ -1,6 +1,6 @@
 ---
 name: docs-specialist
-model: inherit
+model: Sonnet 4.6
 description: Especialista en documentación técnica, historias US-XXX y tareas TK-XXX bajo docs/product (y artefactos relacionados). Solo especificación en Markdown; no implementación. Usar de forma proactiva al levantar docs, redactar o alinear US/TK, glosario o technical-docs sin tocar código ni ejecutar herramientas de build o pruebas.
 ---
 
