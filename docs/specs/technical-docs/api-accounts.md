@@ -17,7 +17,7 @@ Las rutas publicas del proyecto deben usar segmentos en ingles; `/api/accounts` 
 
 ## Autenticacion
 
-El recurso **requiere** contexto de usuario autenticado alineado a **US-001** y al patron de `/api/me`:
+El recurso **requiere** contexto de usuario autenticado, con el mismo patron que `/api/me`:
 
 - Cabecera `Authorization: Bearer <JWT>` emitido por `POST /api/token`, **o**
 - Cookie de sesion demo `ACCESS_TOKEN_COOKIE` con el mismo JWT.
@@ -34,7 +34,7 @@ No se define cuerpo de error adicional para esta demo mas alla de `unauthorized`
 
 ## Reglas de negocio (demo)
 
-- Los datos son **mock** fijos o derivados solo del usuario demo autenticado; no hay nucleo de cuentas real (RN-07 US-002).
+- Los datos son **mock** fijos o derivados solo del usuario demo autenticado; no hay integracion con nucleo de cuentas real.
 - El listado debe ser suficiente para la landing: al menos dos cuentas con `balance` y `number` para enmascarado en UI.
 - Para `type` = `credit-card`, el campo `balance` es **consumo acumulado**; **no** representa cupo disponible ni limite de credito (el signo concreto sigue la convencion numerica del mock).
 - `saving` y `checking`: `balance` es saldo a favor del titular en moneda de la demo.

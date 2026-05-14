@@ -17,7 +17,7 @@ Las rutas publicas del proyecto deben usar segmentos en ingles; `/api/activity` 
 
 ## Autenticacion
 
-El recurso **requiere** contexto de usuario autenticado alineado a **US-001** y al patron de `/api/me` y `/api/accounts`:
+El recurso **requiere** contexto de usuario autenticado, con el mismo patron que `/api/me` y `/api/accounts`:
 
 - Cabecera `Authorization: Bearer <JWT>` emitido por `POST /api/token`, **o**
 - Cookie de sesion demo `ACCESS_TOKEN_COOKIE` con el mismo JWT.
@@ -34,8 +34,8 @@ No se define cuerpo de error adicional para esta demo mas alla de `unauthorized`
 
 ## Reglas de negocio (demo)
 
-- Los datos son **mock**; no hay integracion con nucleo de movimientos real (RN-07 US-002).
-- El listado debe permitir a la landing mostrar al menos **tres** movimientos con descripcion, fecha e importe con signo (criterios US-002).
+- Los datos son **mock**; no hay integracion con nucleo de movimientos real.
+- El listado debe permitir a la landing mostrar al menos **tres** movimientos con descripcion, fecha e importe con signo.
 - Se recomienda ordenar los elementos del arreglo del **mas reciente al mas antiguo** para que la UI muestre primero la actividad ultima.
 - `date` es ISO 8601 en UTC o con offset; la UI puede derivar fecha relativa en cliente.
 

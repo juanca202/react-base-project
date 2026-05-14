@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Define el contrato HTTP para ejecutar una transferencia entre cuentas en el flujo de US-004.
+Define el contrato HTTP para ejecutar una transferencia entre cuentas del usuario autenticado.
 La peticion reutiliza la estructura de `TransferFormDraft` como `TransferRequest` y la respuesta confirma exito con `TransferResponse`.
 
 ## Endpoint
@@ -58,7 +58,7 @@ Objeto JSON de confirmacion:
 
 - El backend o mock debe rechazar peticiones donde `sourceAccountNumber` y `targetAccountNumber` sean iguales.
 - El backend o mock debe rechazar peticiones con `amount` menor o igual a `0`.
-- Las validaciones de saldo disponible y mensajes de error detallados se alinean con reglas de US-004 y se implementan en la capa correspondiente.
+- Las validaciones de saldo disponible y mensajes de error detallados dependen de las reglas de negocio de transferencias acordadas con producto y se implementan en la capa correspondiente.
 
 ## Notas de implementacion
 
