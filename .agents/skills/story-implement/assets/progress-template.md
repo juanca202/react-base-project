@@ -1,6 +1,7 @@
 # Progreso
 
 ## Historia: US-XXX
+
 - Estado: Pending | In Progress | Done
 - Última actualización: YYYY-MM-DD
 
@@ -16,6 +17,6 @@
   Estado: In Progress <Pending | In Progress | Skipped | Done>
   Implementador: "<inferido de git config user.name;>"
   Archivos:
-    - <src/ruta/al/archivo.ext>
-  Notas:
-    - <subpaso o decisión técnica puntual>
+  - <src/ruta/al/archivo.ext>
+    Notas:
+  - <subpaso o decisión técnica puntual>

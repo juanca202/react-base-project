@@ -94,14 +94,14 @@ Escenario: Acceso sin sesión activa
 
 ### Definition of Ready (DoR)
 
-| Criterio DoR                       | Estado  | Notas                                                                                                  |
-| ---------------------------------- | ------- | ------------------------------------------------------------------------------------------------------ |
-| Dependencias listas                | Cumple  | No requiere que US-001 ni US-002 estén implementadas; solo que exista sesión activa (mock disponible). |
-| Inputs/outputs claros              | Cumple  | Cuatro pantallas Figma definen la UI; reglas de negocio y criterios Gherkin cubren entradas y salidas. |
-| Unidades de trabajo definidas      | Cumple  | `react-base-project` identificado; área `src/features/transfers/` definida.                           |
-| Sin decisiones técnicas pendientes | Cumple  | Flujo mock; sin integración real de backend ni API externa en el alcance de esta historia.             |
-| Referencias de UI                  | Cumple  | Los cuatro pasos tienen pantallas en Figma referenciadas con URLs directas.                            |
-| Sin aclaraciones pendientes        | Cumple  | Ninguna aclaración abierta con producto o usuario.                                                     |
+| Criterio DoR                       | Estado | Notas                                                                                                  |
+| ---------------------------------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| Dependencias listas                | Cumple | No requiere que US-001 ni US-002 estén implementadas; solo que exista sesión activa (mock disponible). |
+| Inputs/outputs claros              | Cumple | Cuatro pantallas Figma definen la UI; reglas de negocio y criterios Gherkin cubren entradas y salidas. |
+| Unidades de trabajo definidas      | Cumple | `react-base-project` identificado; área `src/features/transfers/` definida.                            |
+| Sin decisiones técnicas pendientes | Cumple | Flujo mock; sin integración real de backend ni API externa en el alcance de esta historia.             |
+| Referencias de UI                  | Cumple | Los cuatro pasos tienen pantallas en Figma referenciadas con URLs directas.                            |
+| Sin aclaraciones pendientes        | Cumple | Ninguna aclaración abierta con producto o usuario.                                                     |
 
 ## Observaciones
 

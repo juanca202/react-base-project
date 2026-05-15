@@ -27,21 +27,21 @@ Formato canónico del mensaje:
 
 Antes de redactar el mensaje, elegir el flujo aplicable según el estado del repo:
 
-| Condición | Flujo |
-|-----------|-------|
-| `git status` reporta sin cambios | Detener: informar al usuario y no commitear |
-| El diff cubre un único tema lógico | [Flujo: Commit estándar](#flujo-commit-estándar-un-cambio-lógico) |
+| Condición                                                                   | Flujo                                                                                    |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `git status` reporta sin cambios                                            | Detener: informar al usuario y no commitear                                              |
+| El diff cubre un único tema lógico                                          | [Flujo: Commit estándar](#flujo-commit-estándar-un-cambio-lógico)                        |
 | El diff mezcla temas (docs + feature, fix + refactor, módulos sin relación) | [Flujo: Múltiples cambios lógicos mezclados](#flujo-múltiples-cambios-lógicos-mezclados) |
-| `git commit` ya falló por un pre-commit hook | [Flujo: Recuperación tras fallo de hook](#flujo-recuperación-tras-fallo-de-hook) |
+| `git commit` ya falló por un pre-commit hook                                | [Flujo: Recuperación tras fallo de hook](#flujo-recuperación-tras-fallo-de-hook)         |
 
 ---
 
 ## Ubicación de archivos
 
-| Artefacto | Ruta |
-|-----------|------|
-| Repositorio de trabajo | Directorio actual (`pwd`) |
-| Preferencia de idioma | `docs/MEMORY.md` (raíz del repo) — línea `preferred language: <ISO 639-1>` |
+| Artefacto                             | Ruta                                                                                       |
+| ------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Repositorio de trabajo                | Directorio actual (`pwd`)                                                                  |
+| Preferencia de idioma                 | `.agents/MEMORY.md` (raíz del repo) — línea `preferred language: <ISO 639-1>`              |
 | Archivos sensibles vetados en staging | `.env*`, `*.pem`, `*.key`, `id_rsa*`, `*.p12`, `*.pfx`, archivos con credenciales o tokens |
 
 ---
@@ -65,19 +65,19 @@ Reglas concretas para deducir tipo, scope y descripción a partir del diff. Apli
 
 Detectar el primer patrón que aplique en el diff:
 
-| Patrón observado | Tipo |
-|------------------|------|
-| Solo `*.md`, `README*`, `docs/**`, `CHANGELOG*` | `docs` |
-| Solo `*.test.*`, `*.spec.*`, `__tests__/**`, `tests/**` | `test` |
-| Solo `.github/workflows/**`, `.gitlab-ci.*`, `.circleci/**`, `Jenkinsfile`, `azure-pipelines.*` | `ci` |
-| Solo `Dockerfile`, `package.json` deps, `pom.xml`, `build.gradle`, `requirements.txt`, `Cargo.toml`, `go.mod`, `pyproject.toml` | `build` |
-| Solo cambios de formato, espaciado, comillas, sin lógica modificada | `style` |
-| Archivos nuevos bajo `src/**` que añaden funcionalidad usable por el cliente | `feat` |
-| Modificación de lógica existente que corrige un comportamiento descrito como bug | `fix` |
-| Reestructuración interna sin cambiar comportamiento observable (mover, renombrar, extraer) | `refactor` |
-| Cambios cuyo único objetivo es ejecución más rápida o menor consumo | `perf` |
-| Reversión de un commit anterior (`git revert`) | `revert` |
-| Configuración, scripts auxiliares, dependencias menores que no encajan arriba | `chore` |
+| Patrón observado                                                                                                                | Tipo       |
+| ------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Solo `*.md`, `README*`, `docs/**`, `CHANGELOG*`                                                                                 | `docs`     |
+| Solo `*.test.*`, `*.spec.*`, `__tests__/**`, `tests/**`                                                                         | `test`     |
+| Solo `.github/workflows/**`, `.gitlab-ci.*`, `.circleci/**`, `Jenkinsfile`, `azure-pipelines.*`                                 | `ci`       |
+| Solo `Dockerfile`, `package.json` deps, `pom.xml`, `build.gradle`, `requirements.txt`, `Cargo.toml`, `go.mod`, `pyproject.toml` | `build`    |
+| Solo cambios de formato, espaciado, comillas, sin lógica modificada                                                             | `style`    |
+| Archivos nuevos bajo `src/**` que añaden funcionalidad usable por el cliente                                                    | `feat`     |
+| Modificación de lógica existente que corrige un comportamiento descrito como bug                                                | `fix`      |
+| Reestructuración interna sin cambiar comportamiento observable (mover, renombrar, extraer)                                      | `refactor` |
+| Cambios cuyo único objetivo es ejecución más rápida o menor consumo                                                             | `perf`     |
+| Reversión de un commit anterior (`git revert`)                                                                                  | `revert`   |
+| Configuración, scripts auxiliares, dependencias menores que no encajan arriba                                                   | `chore`    |
 
 Lista completa con propósito: [Tipos de commit (referencia)](#tipos-de-commit-referencia).
 
@@ -112,14 +112,14 @@ Si hay coincidencias, **o** si el staging incluye archivos con extensión `.env*
 
 Antes de redactar o ejecutar cualquier commit, el agente debe tener clara esta información. **No inventar nada** — si algún dato no es explícito, preguntar al usuario.
 
-| Dato | Cómo obtenerlo | Si no está disponible |
-|------|----------------|-----------------------|
-| **Estado del repo** | `git status --porcelain` | Sin cambios: informar al usuario y detener |
-| **Diff** | `git diff --staged` si hay staging; si no, `git diff` | Sin cambios reales: no hay nada que commitear |
-| **Rama actual** | `git rev-parse --abbrev-ref HEAD` | — |
-| **Tipo, scope, descripción** | Aplicar [Inferencia desde el diff](#inferencia-desde-el-diff) | Proponer y permitir override del usuario; si ninguna regla aplica, preguntar |
-| **Agrupación de archivos** | Inferida del diff por afinidad lógica | Si hay temas mezclados, pasar a [Flujo: Múltiples cambios lógicos mezclados](#flujo-múltiples-cambios-lógicos-mezclados) |
-| **Idioma de preferencia** | (1) idioma del turno actual; (2) `docs/MEMORY.md` → `preferred language: <ISO>` | Preguntar y persistir en `docs/MEMORY.md` con la línea `preferred language: <código>` |
+| Dato                         | Cómo obtenerlo                                                                     | Si no está disponible                                                                                                    |
+| ---------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Estado del repo**          | `git status --porcelain`                                                           | Sin cambios: informar al usuario y detener                                                                               |
+| **Diff**                     | `git diff --staged` si hay staging; si no, `git diff`                              | Sin cambios reales: no hay nada que commitear                                                                            |
+| **Rama actual**              | `git rev-parse --abbrev-ref HEAD`                                                  | —                                                                                                                        |
+| **Tipo, scope, descripción** | Aplicar [Inferencia desde el diff](#inferencia-desde-el-diff)                      | Proponer y permitir override del usuario; si ninguna regla aplica, preguntar                                             |
+| **Agrupación de archivos**   | Inferida del diff por afinidad lógica                                              | Si hay temas mezclados, pasar a [Flujo: Múltiples cambios lógicos mezclados](#flujo-múltiples-cambios-lógicos-mezclados) |
+| **Idioma de preferencia**    | (1) idioma del turno actual; (2) `.agents/MEMORY.md` → `preferred language: <ISO>` | Preguntar y persistir en `.agents/MEMORY.md` con la línea `preferred language: <código>`                                 |
 
 > Leer el diff completo antes de redactar el mensaje. No describir cambios que no estén en el diff. No omitir cambios visibles que alteren el sentido del commit.
 
@@ -130,6 +130,7 @@ Antes de redactar o ejecutar cualquier commit, el agente debe tener clara esta i
 Antes de ejecutar `git commit`, verificar las siguientes condiciones. Si alguna falla, **no commitear** — informar al usuario y resolver primero.
 
 **¿Qué verificar?**
+
 - **Sin secretos en staging:** ejecutar [Detección de secretos en el diff](#detección-de-secretos-en-el-diff). Si hay coincidencias, detener.
 - **Un solo cambio lógico:** si el staging mezcla temas, cambiar a [Flujo: Múltiples cambios lógicos mezclados](#flujo-múltiples-cambios-lógicos-mezclados).
 - **Tipo coherente con el diff:** el tipo refleja realmente lo que cambió. No usar `chore` para enmascarar features ni `feat` para puro refactor.
@@ -137,6 +138,7 @@ Antes de ejecutar `git commit`, verificar las siguientes condiciones. Si alguna 
 - **Rama de destino segura:** si la rama actual es `main`, `master`, `develop` o `release/*`, confirmar con el usuario antes de commitear directo. Nunca force push a esas ramas.
 
 **Si hay conflicto:**
+
 ```
 ⚠️ No es posible commitear todavía:
 - <razón concreta>
@@ -167,6 +169,7 @@ Aplica cuando el diff cubre un único cambio coherente.
 5. **Ejecutar [Validación antes de ejecutar](#validación-antes-de-ejecutar).** Si falla, detener y reportar.
 6. **Mostrar [Propuesta de commit](#propuesta-de-commit)** al usuario y esperar confirmación o ajustes.
 7. **Ejecutar el commit** una vez confirmado:
+
    ```bash
    # Mensaje de una línea
    git commit -m "<type>[scope]: <description>"
@@ -181,6 +184,7 @@ Aplica cuando el diff cubre un único cambio coherente.
    EOF
    )"
    ```
+
 8. **Reportar al usuario** el SHA corto (`git rev-parse --short HEAD`) y el mensaje del commit creado.
 
 ---
@@ -242,19 +246,22 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 ## Checklist antes de ejecutar `git commit`
 
 **Información:**
+
 - [ ] `git status` y `git diff` revisados completos
 - [ ] Tipo, scope y descripción derivados de [Inferencia desde el diff](#inferencia-desde-el-diff), no inventados
 - [ ] Rama actual conocida (`git rev-parse --abbrev-ref HEAD`)
-- [ ] Idioma de preferencia determinado y `docs/MEMORY.md` actualizado si fue necesario
+- [ ] Idioma de preferencia determinado y `.agents/MEMORY.md` actualizado si fue necesario
 - [ ] Intención clara: un commit único vs. separación en varios
 
 **Validación:**
+
 - [ ] [Detección de secretos](#detección-de-secretos-en-el-diff) ejecutada sin coincidencias
 - [ ] Un solo cambio lógico por commit
 - [ ] Sin `--force`, `--hard`, `--no-verify`, `--amend` salvo petición explícita
 - [ ] Rama segura, o usuario confirmó commit directo en `main`/`master`/`develop`/`release/*`
 
 **Formato del mensaje:**
+
 - [ ] Primera línea: `<type>[scope]: <description>` válido
 - [ ] Tipo y scope en inglés (palabras clave convencionales)
 - [ ] Descripción en imperativo presente, máximo 72 chars, sin punto final, sin mayúscula inicial
@@ -263,6 +270,7 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 - [ ] Referencia a issue (`Closes #X` / `Refs #X`) si el usuario la aportó
 
 **Confirmación:**
+
 - [ ] [Propuesta de commit](#propuesta-de-commit) mostrada y confirmación recibida
 
 ---
@@ -271,8 +279,8 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 
 **Ejemplo 1 — Commit estándar**
 
-- *Entrada:* «Acabo de corregir el bug del cupón vacío en el checkout; diff solo en `src/cart/checkout.ts`.»
-- *Salida:*
+- _Entrada:_ «Acabo de corregir el bug del cupón vacío en el checkout; diff solo en `src/cart/checkout.ts`.»
+- _Salida:_
   ```bash
   git add src/cart/checkout.ts
   git commit -m "fix(cart): validate empty coupon before apply"
@@ -280,15 +288,16 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 
 **Ejemplo 2 — Cambios mezclados**
 
-- *Entrada:* Diff incluye `README.md`, `docs/api.md` y `src/api/users.ts` con una ruta nueva.
-- *Salida:* Proponer dos commits:
+- _Entrada:_ Diff incluye `README.md`, `docs/api.md` y `src/api/users.ts` con una ruta nueva.
+- _Salida:_ Proponer dos commits:
   1. `docs: update API endpoint reference` — solo archivos de documentación.
   2. `feat(users): add endpoint to fetch user preferences` — solo el código.
 
 **Ejemplo 3 — Breaking change**
 
-- *Entrada:* Diff renombra un endpoint público de `/v1/users` a `/v2/users` rompiendo clientes existentes.
-- *Salida:*
+- _Entrada:_ Diff renombra un endpoint público de `/v1/users` a `/v2/users` rompiendo clientes existentes.
+- _Salida:_
+
   ```
   feat(api)!: rename users endpoint to v2
 
@@ -297,18 +306,18 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 
 **Ejemplo 4 — Información incompleta**
 
-- *Entrada:* «Haz commit de lo que está en staging.»
-- *Comportamiento:* Revisar el diff. Si ninguna regla de [Scope](#scope) encaja porque los cambios cruzan varios módulos sin patrón, preguntar al usuario por la intención principal o proponer agrupación. No generar un mensaje genérico.
+- _Entrada:_ «Haz commit de lo que está en staging.»
+- _Comportamiento:_ Revisar el diff. Si ninguna regla de [Scope](#scope) encaja porque los cambios cruzan varios módulos sin patrón, preguntar al usuario por la intención principal o proponer agrupación. No generar un mensaje genérico.
 
 **Ejemplo 5 — Fallo de hook**
 
-- *Entrada:* Tras `git commit`, el hook de lint falla con un error de formato en `src/utils.ts`.
-- *Comportamiento:* Aplicar el formateo, `git add src/utils.ts`, crear un commit nuevo con el mismo mensaje. No usar `--amend` ni `--no-verify`.
+- _Entrada:_ Tras `git commit`, el hook de lint falla con un error de formato en `src/utils.ts`.
+- _Comportamiento:_ Aplicar el formateo, `git add src/utils.ts`, crear un commit nuevo con el mismo mensaje. No usar `--amend` ni `--no-verify`.
 
 **Ejemplo 6 — Secreto detectado**
 
-- *Entrada:* Diff staged incluye `config/.env.local` con `DB_PASSWORD=hunter2`.
-- *Comportamiento:* Detener antes de commitear. Reportar al usuario el archivo y la línea detectados. Sugerir `git restore --staged config/.env.local` y añadir el patrón a `.gitignore`. No commitear hasta confirmación explícita del usuario.
+- _Entrada:_ Diff staged incluye `config/.env.local` con `DB_PASSWORD=hunter2`.
+- _Comportamiento:_ Detener antes de commitear. Reportar al usuario el archivo y la línea detectados. Sugerir `git restore --staged config/.env.local` y añadir el patrón a `.gitignore`. No commitear hasta confirmación explícita del usuario.
 
 ---
 
@@ -332,19 +341,19 @@ Esperar respuesta del usuario. **No ejecutar `git commit`** hasta recibir confir
 
 ### Tipos de commit (referencia)
 
-| Tipo | Propósito |
-|------|-----------|
-| `feat` | Nueva funcionalidad |
-| `fix` | Corrección de bug |
-| `docs` | Solo documentación |
-| `style` | Formato/estilo (sin lógica) |
+| Tipo       | Propósito                         |
+| ---------- | --------------------------------- |
+| `feat`     | Nueva funcionalidad               |
+| `fix`      | Corrección de bug                 |
+| `docs`     | Solo documentación                |
+| `style`    | Formato/estilo (sin lógica)       |
 | `refactor` | Refactorización (sin feature/fix) |
-| `perf` | Mejora de rendimiento |
-| `test` | Añadir o actualizar tests |
-| `build` | Sistema de build / dependencias |
-| `ci` | Cambios en CI / configuración |
-| `chore` | Mantenimiento / miscelánea |
-| `revert` | Revertir commit |
+| `perf`     | Mejora de rendimiento             |
+| `test`     | Añadir o actualizar tests         |
+| `build`    | Sistema de build / dependencias   |
+| `ci`       | Cambios en CI / configuración     |
+| `chore`    | Mantenimiento / miscelánea        |
+| `revert`   | Revertir commit                   |
 
 ### Cambios breaking
 
@@ -365,8 +374,8 @@ BREAKING CHANGE: `extends` key behavior changed
 Resolver en este orden, deteniéndose en el primer paso que aplique:
 
 1. Inferir del idioma del turno actual del usuario.
-2. Leer `docs/MEMORY.md` y buscar la línea `preferred language: <código ISO 639-1>` (ej. `es`, `en`).
-3. Si no existe el archivo o no hay esa línea: **preguntar al usuario** qué idioma prefiere y persistir la respuesta creando o actualizando `docs/MEMORY.md` con la línea `preferred language: <código>`.
+2. Leer `.agents/MEMORY.md` y buscar la línea `preferred language: <código ISO 639-1>` (ej. `es`, `en`).
+3. Si no existe el archivo o no hay esa línea: **preguntar al usuario** qué idioma prefiere y persistir la respuesta creando o actualizando `.agents/MEMORY.md` con la línea `preferred language: <código>`.
 
 Solo afecta a la parte en lenguaje natural (descripción, body, footers). **Tipo y `scope`** siguen siendo palabras clave convencionales en inglés salvo acuerdo explícito del equipo.
 

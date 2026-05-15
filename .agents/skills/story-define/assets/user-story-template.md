@@ -17,7 +17,7 @@
 
 ## Referencias
 
-- **Diseño / prototipo:** [<nombre descriptivo>](<url>)
+- **Diseño / prototipo:** [<nombre descriptivo>](url)
 - **Archivo local:** [<nombre descriptivo>](assets/<nombre-del-archivo.ext>)
 - <añadir entradas adicionales o indicar «Ninguna por ahora»>
 
@@ -56,14 +56,14 @@
 
 ### Definition of Ready (DoR)
 
-| Criterio DoR                       | Estado                                     | Notas                                                                        |
-| ---------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------- |
-| Dependencias listas                | <Cumple / No cumple / Parcial>             | <explicación>                                                                |
-| Inputs/outputs claros              | <Cumple / No cumple / Parcial>             | <explicación>                                                                |
-| Unidades de trabajo definidas      | <Cumple / No cumple / Parcial>             | <explicación>                                                                |
-| Sin decisiones técnicas pendientes | <Cumple / No cumple / Parcial>             | <explicación>                                                                |
-| Referencias de UI                  | <Cumple / No cumple / Parcial / No aplica> | <explicación>                                                                |
-| Sin aclaraciones pendientes        | <Cumple / No cumple / Parcial>             | <vacío o «Ninguna» en Observaciones; nada pendiente con usuario/producto>    |
+| Criterio DoR                       | Estado                                     | Notas                                                                     |
+| ---------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------- |
+| Dependencias listas                | <Cumple / No cumple / Parcial>             | <explicación>                                                             |
+| Inputs/outputs claros              | <Cumple / No cumple / Parcial>             | <explicación>                                                             |
+| Unidades de trabajo definidas      | <Cumple / No cumple / Parcial>             | <explicación>                                                             |
+| Sin decisiones técnicas pendientes | <Cumple / No cumple / Parcial>             | <explicación>                                                             |
+| Referencias de UI                  | <Cumple / No cumple / Parcial / No aplica> | <explicación>                                                             |
+| Sin aclaraciones pendientes        | <Cumple / No cumple / Parcial>             | <vacío o «Ninguna» en Observaciones; nada pendiente con usuario/producto> |
 
 ## Observaciones
 
