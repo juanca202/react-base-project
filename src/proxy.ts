@@ -5,13 +5,7 @@ import { hasValidSession } from '@/lib/auth/session-edge';
 const LOGIN = '/login';
 const SUMMARY = '/summary';
 
-const AUTH_REQUIRED_PREFIXES = [
-  '/summary',
-  '/transfer',
-  '/withdraw',
-  '/services',
-  '/pay-qr'
-] as const;
+const AUTH_REQUIRED_PREFIXES = ['/summary', '/withdraw', '/services', '/pay-qr'] as const;
 
 function requiresAuth(pathname: string): boolean {
   return AUTH_REQUIRED_PREFIXES.some(

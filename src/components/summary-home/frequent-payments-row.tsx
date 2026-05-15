@@ -27,7 +27,7 @@ export function FrequentPaymentsRow({ lastActionLabel }: FrequentPaymentsRowProp
       h: 25.556
     },
     {
-      href: '/transfer',
+      href: '/pay-qr',
       label: 'Jannet Ruiz',
       src: '/summary-figma/user.svg',
       w: 25.556,
@@ -41,7 +41,7 @@ export function FrequentPaymentsRow({ lastActionLabel }: FrequentPaymentsRowProp
       h: 25.556
     },
     {
-      href: '/transfer',
+      href: '/pay-qr',
       label: lastActionLabel,
       src: '/summary-figma/user.svg',
       w: 25.556,
