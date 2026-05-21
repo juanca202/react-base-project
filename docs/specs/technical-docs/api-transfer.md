@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Define el contrato HTTP para ejecutar una transferencia entre cuentas en el flujo de US-004.
+Define el contrato HTTP para ejecutar una transferencia entre cuentas en el flujo de US-003.
 La peticion reutiliza la estructura de `TransferFormDraft` como `TransferRequest` y la respuesta confirma exito con `TransferResponse`.
 
 ## Endpoint
@@ -18,13 +18,13 @@ La peticion reutiliza la estructura de `TransferFormDraft` como `TransferRequest
 
 Objeto JSON con los campos:
 
-| Campo             | Tipo   | Obligatorio | Descripcion                                     |
-| ----------------- | ------ | ----------- | ----------------------------------------------- |
-| `sourceAccountNumber` | string | Si      | Numero de la cuenta origen.                     |
-| `targetAccountNumber` | string | Si      | Numero de la cuenta destino.                    |
-| `routerNumber`        | string | Si      | Numero de ruta bancaria de la transferencia.    |
-| `amount`          | number | Si          | Monto a transferir. Debe ser mayor que cero.    |
-| `description`     | string | Si          | Descripcion de la transferencia para el recibo. |
+| Campo                 | Tipo   | Obligatorio | Descripcion                                     |
+| --------------------- | ------ | ----------- | ----------------------------------------------- |
+| `sourceAccountNumber` | string | Si          | Numero de la cuenta origen.                     |
+| `targetAccountNumber` | string | Si          | Numero de la cuenta destino.                    |
+| `routerNumber`        | string | Si          | Numero de ruta bancaria de la transferencia.    |
+| `amount`              | number | Si          | Monto a transferir. Debe ser mayor que cero.    |
+| `description`         | string | Si          | Descripcion de la transferencia para el recibo. |
 
 **Ejemplo:**
 
@@ -42,8 +42,8 @@ Objeto JSON con los campos:
 
 Objeto JSON de confirmacion:
 
-| Campo     | Tipo   | Obligatorio | Descripcion                         |
-| --------- | ------ | ----------- | ----------------------------------- |
+| Campo     | Tipo   | Obligatorio | Descripcion                           |
+| --------- | ------ | ----------- | ------------------------------------- |
 | `message` | string | Si          | Mensaje de exito de la transferencia. |
 
 **Ejemplo:**
@@ -58,7 +58,7 @@ Objeto JSON de confirmacion:
 
 - El backend o mock debe rechazar peticiones donde `sourceAccountNumber` y `targetAccountNumber` sean iguales.
 - El backend o mock debe rechazar peticiones con `amount` menor o igual a `0`.
-- Las validaciones de saldo disponible y mensajes de error detallados se alinean con reglas de US-004 y se implementan en la capa correspondiente.
+- Las validaciones de saldo disponible y mensajes de error detallados se alinean con reglas de US-003 y se implementan en la capa correspondiente.
 
 ## Notas de implementacion
 

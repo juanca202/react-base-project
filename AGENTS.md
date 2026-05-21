@@ -3,7 +3,7 @@
 ## 1) Reglas y decisiones del proyecto (orden de consulta obligatorio)
 
 1. Las decisiones y reglas del proyecto se consultan primero en `.agents/MEMORY.md`.
-2. Luego revisar `docs/adr` segun el tema cuando existan ADRs.
+2. Luego revisar si existe `docs/adr/README.md` segun el tema cuando requieras decisiones de arquitectura.
 3. Si hay ambiguedades entre reglas o decisiones, preguntar al usuario antes de proceder.
 4. Si la respuesta del usuario puede servir para futuras consideraciones, preguntarle si desea guardarla en `.agents/MEMORY.md` antes de actualizar ese archivo.
 
