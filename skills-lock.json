@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "adr-manage": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/adr-manage/SKILL.md",
+      "computedHash": "7ac19129df406476e53491a2d0897c53325ccfbbdd4f0104e8cc5f0e47e98ee9"
+    },
+    "code-review": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/code-review/SKILL.md",
+      "computedHash": "614b9b115583a2af36f48efb3b79d250039941365117f60938be45d3047bc5e4"
+    },
+    "git-commit": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "computedHash": "f93f4c8095ce5005371006c5a0dda2a8c4e009c6e7c8b6acf42e150ebeb63c8b"
+    },
+    "prompt-validator": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/prompt-validator/SKILL.md",
+      "computedHash": "533ed8bb20184945a256253f6b8ad67cc3a02d935ff54e7d8b8cba88f28f4591"
+    },
+    "story-define": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-define/SKILL.md",
+      "computedHash": "5bf4717c9d8035f69f68faad4328e2f4702c04b3cf8d6fbd7d23ab3d15c99c90"
+    },
+    "story-implement": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-implement/SKILL.md",
+      "computedHash": "3a8fa06e0f577c6535a71e2027cdbb55b68c3bbef717a6f0a050e20336c292a8"
+    },
+    "story-integrate": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-integrate/SKILL.md",
+      "computedHash": "c5e297f4243f75dc592f3b41d24e38614348a6e00cfbc293ced654f4b5aae695"
+    },
+    "story-plan": {
+      "source": "juanca202/skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-plan/SKILL.md",
+      "computedHash": "d050a33a2e904a317f75d9cc5a2b6c265f6cd3528b41177e01ca5f9bfea1557f"
+    }
+  }
+}
