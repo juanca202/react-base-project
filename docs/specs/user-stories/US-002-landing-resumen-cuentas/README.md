@@ -1,15 +1,22 @@
 # US-002: Landing — resumen de cuentas y atajos
 
-- **ID:** US-002
-- **Estado:** Ready
+- Estado: Ready
+- Fecha de creación: 2026-05-04
+- Última actualización: 2026-05-21
 
 ## Descripción
 
-**Como** usuario autenticado  
-**Quiero** ver un resumen de mis cuentas, los últimos movimientos y atajos a operaciones frecuentes  
-**Para** tener contexto financiero rápido y acceder con menos pasos a transferencias u otros servicios
+**COMO** usuario autenticado  
+**QUIERO** ver un resumen de mis cuentas, los últimos movimientos y atajos a operaciones frecuentes  
+**PARA** tener contexto financiero rápido y acceder con menos pasos a transferencias u otros servicios
 
-## Reglas de negocio
+## Referencias
+
+- **Diseño / prototipo:** [Pantallas taller SDD — frame nodo 1-1605](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-1605&m=dev)
+
+## Criterios de aceptación
+
+### Reglas de negocio
 
 - **RN-01** — La pantalla de inicio **DEBE** mostrar al menos una sección de cuentas con nombre, identificador enmascarado y saldo presentado al usuario.
 - **RN-02** — La pantalla **DEBE** mostrar una lista de últimos movimientos con descripción, fecha relativa y signo del importe.
@@ -19,11 +26,7 @@
 - **RN-06** — Los atajos como «Servicios» y «Pagos QR» **DEBEN** definir con producto su comportamiento cuando apunten a rutas no implementadas (404 o placeholder).
 - **RN-07** — Los saldos y movimientos de esta historia son de demo y la integración con sistemas reales **DEBE** planificarse en historias posteriores.
 
-## Referencias
-
-- **Diseño / prototipo (Figma):** [Pantallas taller SDD — frame nodo 1-1605](https://www.figma.com/design/7pt2W7JSic4ZoAVcgvQ5qD/Pantallas-taller-SDD?node-id=1-1605&m=dev)
-
-## Criterios de aceptación
+### Escenarios
 
 ```gherkin
 DADO un usuario autenticado
@@ -45,7 +48,7 @@ ENTONCES es redirigido según las reglas de autenticación (véase US-001)
 
 ## Complejidad sugerida
 
-- **Story points:** 3 (Fibonacci: 1, 2, 3, 5, 8, 13)
+- **Story points:** 3
 - **Justificación:** UI de varias secciones y datos mock; sin integración backend real en la demo actual.
 
 ## Unidades de trabajo
@@ -74,4 +77,10 @@ ENTONCES es redirigido según las reglas de autenticación (véase US-001)
 | Unidades de trabajo definidas      | Cumple | Listadas arriba.                                                                                                                    |
 | Sin decisiones técnicas pendientes | Cumple | Para el alcance demo de esta historia, el origen de datos mock/estático queda aceptado; la integración real se difiere según RN-07. |
 | Referencias de UI                  | Cumple | Enlace a Figma en **Referencias**.                                                                                                  |
-| Sin aclaraciones pendientes        | Cumple | Atajos y datos demo formalizados en RN-06 y RN-07.                                                                                  |
+| Sin aclaraciones pendientes        | Cumple | Dependencias, atajos y datos demo formalizados en **RN-05**, **RN-06**, **RN-07** y **Observaciones**.                              |
+
+## Observaciones
+
+- **Dependencia:** requiere **US-001** implementada y operativa para el contexto autenticado y las redirecciones (**RN-05**).
+- Comportamiento de atajos «Servicios» y «Pagos QR» cuando apunten a rutas no implementadas: definir con producto (404 o placeholder; **RN-06**).
+- Datos de cuentas y movimientos: demo con mocks o estáticos; integración con sistemas reales queda para historias posteriores (**RN-07**).

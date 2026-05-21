@@ -24,7 +24,7 @@ Objeto JSON con los campos:
 | `targetAccountNumber` | string | Si          | Numero de la cuenta destino.                    |
 | `routerNumber`        | string | Si          | Numero de ruta bancaria de la transferencia.    |
 | `amount`              | number | Si          | Monto a transferir. Debe ser mayor que cero.    |
-| `description`         | string | Si          | Descripcion de la transferencia para el recibo. |
+| `description`         | string | No          | Descripcion de la transferencia para el recibo. |
 
 **Ejemplo:**
 
